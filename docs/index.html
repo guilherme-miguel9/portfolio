@@ -24,13 +24,13 @@
 
     <header class="navegacao">
       <div class="nav-container">
-        <a href="#inicio" class="logo">GM<span>.data</span></a>
+        <a href="#inicio" class="logo">GM<span>.dados</span></a>
         <nav class="menu-nav">
           <ul class="menu">
             <li><a href="#inicio" class="menu-link">Início</a></li>
             <li><a href="#sobre" class="menu-link">Sobre</a></li>
             <li><a href="#habilidades" class="menu-link">Habilidades</a></li>
-            <li><a href="#playground" class="menu-link">Playground</a></li>
+            <li><a href="#playground" class="menu-link">Laboratório</a></li>
             <li><a href="#projetos" class="menu-link">Projetos</a></li>
             <li><a href="#contato" class="menu-link">Contato</a></li>
           </ul>
@@ -131,8 +131,8 @@
             <ul class="pipeline-tags">
               <li>Pandas</li>
               <li>NumPy</li>
-              <li>ETL Pipelines</li>
-              <li>Data Cleaning</li>
+              <li>Pipelines ETL</li>
+              <li>Limpeza de Dados</li>
               <li>Excel VBA</li>
             </ul>
           </div>
@@ -145,7 +145,7 @@
             <p>Criação e validação de modelos preditivos, algoritmos de classificação, clusterização e regressão.</p>
             <ul class="pipeline-tags">
               <li>Scikit-Learn</li>
-              <li>Model Tuning</li>
+              <li>Ajuste de Modelos</li>
               <li>Validação Cruzada</li>
               <li>Algoritmos de Otimização</li>
             </ul>
@@ -158,11 +158,11 @@
             <h3>4. Visualização & Entrega</h3>
             <p>Criação de dashboards dinâmicos, relatórios gerenciais e comunicação clara de insights de negócio.</p>
             <ul class="pipeline-tags">
-              <li>Folium Maps</li>
+              <li>Mapas Folium</li>
               <li>Matplotlib</li>
               <li>Seaborn</li>
-              <li>Dashboards</li>
-              <li>FastAPI Deploy</li>
+              <li>Painéis Visuais</li>
+              <li>Deploy FastAPI</li>
             </ul>
           </div>
 
@@ -173,7 +173,7 @@
     <!-- Data Science Interactive Playground -->
     <section id="playground" class="playground">
       <div class="secao-container">
-        <h2 class="secao-titulo">Interactive ML Playground</h2>
+        <h2 class="secao-titulo">Laboratório Interativo de Machine Learning</h2>
         <p class="secao-subtitulo">Treine um modelo de Machine Learning diretamente no navegador</p>
         
         <div class="playground-layout">
@@ -185,14 +185,14 @@
               <label for="model-type">Tipo de Modelo</label>
               <select id="model-type">
                 <option value="neural_network">Rede Neural Multicamadas (MLP)</option>
-                <option value="random_forest">Random Forest Classifier</option>
-                <option value="linear_regression">Regressão Linear Gradient Descent</option>
+                <option value="random_forest">Classificador Random Forest</option>
+                <option value="linear_regression">Regressão Linear via Gradiente Descendente</option>
               </select>
             </div>
 
             <div class="controle-grid">
               <div class="controle-grupo">
-                <label for="learning-rate">Learning Rate (α)</label>
+                <label for="learning-rate">Taxa de Aprendizado (α)</label>
                 <select id="learning-rate">
                   <option value="0.001">0.001 (Lento/Estável)</option>
                   <option value="0.01" selected>0.01 (Recomendado)</option>
@@ -204,16 +204,16 @@
               <div class="controle-grupo">
                 <label for="epochs">Épocas de Treino</label>
                 <select id="epochs">
-                  <option value="50">50 Epochs</option>
-                  <option value="100" selected>100 Epochs</option>
-                  <option value="150">150 Epochs</option>
-                  <option value="200">200 Epochs</option>
+                  <option value="50">50 Épocas</option>
+                  <option value="100" selected>100 Épocas</option>
+                  <option value="150">150 Épocas</option>
+                  <option value="200">200 Épocas</option>
                 </select>
               </div>
             </div>
 
             <div class="controle-grupo">
-              <label for="noise-level">Ruído nos Dados (Split)</label>
+              <label for="noise-level">Ruído nos Dados</label>
               <input type="range" id="noise-level" min="5" max="30" value="15">
               <span id="noise-val">15%</span>
             </div>
@@ -230,16 +230,16 @@
                 <span class="status-ponto idle" id="status-ponto"></span>
                 <span id="status-texto">Pronto para treinar</span>
               </div>
-              <div class="epoch-counter" id="epoch-counter">Epoch: 0/0</div>
+              <div class="epoch-counter" id="epoch-counter">Época: 0/0</div>
             </div>
 
             <div class="metricas-cards">
               <div class="metrica-card">
-                <span class="metrica-titulo">Loss (Perda)</span>
+                <span class="metrica-titulo">Perda (Loss)</span>
                 <span class="metrica-valor" id="val-loss">1.5420</span>
               </div>
               <div class="metrica-card">
-                <span class="metrica-titulo">Accuracy (Acurácia)</span>
+                <span class="metrica-titulo">Acurácia (Accuracy)</span>
                 <span class="metrica-valor" id="val-accuracy">35.4%</span>
               </div>
             </div>
@@ -267,11 +267,11 @@
             </div>
             <div class="caixa-textos-projeto">
               <div class="projeto-meta">
-                <span class="proj-tag">Data Routing & Otimização</span>
+                <span class="proj-tag">Roteamento de Dados & Otimização</span>
               </div>
               <h3 class="projeto-info">API de Roteirização Inteligente</h3>
               <p class="projeto-descricao">
-                API desenvolvida em Python com FastAPI, Folium e OSMR. O sistema calcula rotas otimizadas e coordenadas geográficas de agentes em campo, visando a redução de custos de deslocamento e tempo de percurso.
+                API desenvolvida em Python com FastAPI, Folium e OSRM. O sistema calcula rotas otimizadas e coordenadas geográficas de agentes em campo, visando a redução de custos de deslocamento e tempo de percurso.
               </p>
               <div class="projeto-tecnologias">
                 <span>FastAPI</span>
@@ -289,7 +289,7 @@
             </div>
             <div class="caixa-textos-projeto">
               <div class="projeto-meta">
-                <span class="proj-tag">Data Ingestion Pipeline</span>
+                <span class="proj-tag">Pipeline de Ingestão de Dados</span>
               </div>
               <h3 class="projeto-info">Pipeline de Integração SQL & App Desktop</h3>
               <p class="projeto-descricao">
@@ -311,7 +311,7 @@
             </div>
             <div class="caixa-textos-projeto">
               <div class="projeto-meta">
-                <span class="proj-tag">Process Automation & RPA</span>
+                <span class="proj-tag">Automação de Processos & RPA</span>
               </div>
               <h3 class="projeto-info">Automação de Auditoria SAP & Analítica</h3>
               <p class="projeto-descricao">
@@ -320,8 +320,8 @@
               <div class="projeto-tecnologias">
                 <span>VBA Excel</span>
                 <span>SAP Scripting</span>
-                <span>Data Audit</span>
-                <span>Data Analytics</span>
+                <span>Auditoria de Dados</span>
+                <span>Analytics</span>
               </div>
             </div>
           </div>

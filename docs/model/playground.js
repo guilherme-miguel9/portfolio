@@ -372,7 +372,7 @@ const initMLPlayground = () => {
             accuracyHistory.push(acc);
 
             // Update UI Counters
-            epochCounter.textContent = `Epoch: ${currentEpoch}/${epochs}`;
+            epochCounter.textContent = `Época: ${currentEpoch}/${epochs}`;
             valLoss.textContent = loss.toFixed(4);
             valAccuracy.textContent = (acc * 100).toFixed(1) + "%";
 
