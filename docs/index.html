@@ -3,116 +3,393 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Portfolio</title>
+    <title>Guilherme Miguel | Cientista de Dados & Desenvolvedor Python</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Portfolio de Guilherme Miguel - Cientista de Dados e Engenheiro de Analytics especializado em Python, Machine Learning, otimização de bancos de dados PostgreSQL e automações inteligentes." />
+    <meta name="keywords" content="Data Science, Machine Learning, Python, PostgreSQL, Pandas, Cientista de Dados, Automação, Portfolio" />
+    <meta name="author" content="Guilherme Miguel" />
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="./view/styles.css" />
     <link rel="icon" type="image/png" href="./view/images/portfolio.png" />
   </head>
   <body>
-    <div class="particulas"></div>
+    <!-- Fundo de Rede Neural Interativo -->
+    <canvas id="network-canvas" class="particulas"></canvas>
 
-    <header class="banner"></header>
+    <header class="navegacao">
+      <div class="nav-container">
+        <a href="#inicio" class="logo">GM<span>.data</span></a>
+        <nav class="menu-nav">
+          <ul class="menu">
+            <li><a href="#inicio" class="menu-link">Início</a></li>
+            <li><a href="#sobre" class="menu-link">Sobre</a></li>
+            <li><a href="#habilidades" class="menu-link">Habilidades</a></li>
+            <li><a href="#playground" class="menu-link">Playground</a></li>
+            <li><a href="#projetos" class="menu-link">Projetos</a></li>
+            <li><a href="#contato" class="menu-link">Contato</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
 
-    <nav class="navegacao">
-      <ul class="menu">
-        <li><a href="#inicio" class="menu-link">Início</a></li>
-        <li><a href="#sobre" class="menu-link">Sobre Mim</a></li>
-        <li><a href="#projetos" class="menu-link">Projetos</a></li>
-        <li><a href="#contato" class="menu-link">Contato</a></li>
-      </ul>
-    </nav>
-
-    <h1></h1>
-
-    <main id="inicio" class="cabecalho">
-      <img src="./view/images/foto-perfil.jpg" class="foto-perfil" alt="Foto de Perfil">
-        <h1>
-          Olá, me chamo Guilherme Miguel.
-        </h1>
-        <p class="cabecalho-descricao">
-          Desenvolvedor Back-End | Python | PostGreSQL | VBA | JavaScript
-        </p>
-    </main>
-
-    <section id="sobre" class="sobre">
-      <h2 class="sobre-titulo">Sobre Mim</h2>
-      <div class="sobre-conteudo">
-        <p class="sobre-texto">
-          Sou um desenvolvedor Back-End com experiência em Python, PostGreSQL,
-          VBA e JavaScript. Tenho paixão por criar automações e serviços
-          escaláveis. Estou sempre em busca de aprimorar minhas habilidades e
-          aprender novas tecnologias, atualmente estou em busca da minha
-          primeira oportunidade na área de desenvolvedor.
-        </p>
+    <!-- Hero Section -->
+    <section id="inicio" class="cabecalho">
+      <div class="hero-conteudo">
+        <div class="foto-perfil-wrapper">
+          <img src="./view/images/foto-perfil.jpg" class="foto-perfil" alt="Foto de Perfil de Guilherme Miguel">
+          <div class="foto-glow"></div>
+        </div>
+        <div class="hero-textos">
+          <span class="hero-tag">Disponível para Projetos & Oportunidades</span>
+          <h1 class="hero-titulo">Olá, me chamo <span>Guilherme Miguel</span>.</h1>
+          <p class="hero-subtitulo">
+            Cientista de Dados & Engenheiro de Analytics
+          </p>
+          <p class="hero-descricao">
+            Especialista em transformar dados complexos em soluções estratégicas. Domínio em Python, modelagem de Machine Learning, pipelines de dados robustos (SQL/Pandas) e automações de processos eficientes.
+          </p>
+          <div class="hero-botoes">
+            <a href="#projetos" class="btn btn-primario">Ver Projetos</a>
+            <a href="#playground" class="btn btn-secundario">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-right: 8px; vertical-align: middle;"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+              Treinar Modelo
+            </a>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section id="projetos" class="projetos">
-
-      <h2 class="projetos-titulo">Meus Projetos</h2>
-
-      <div class="projetos-conteudo">
-
-        <div class="projeto-card">
-          <img class="projetos-img" src="./view/images/api_roteirizacao.png" alt="API de Roteirização de mapas" href="https://github.com/guilherme-miguel9/api_route">
-          <div class="caixa-textos-projeto">
-            <h3 class="projeto-info">API de Roteirização de mapas</h3>
-            <p class="projeto-descricao">
-              Desenvolvi uma API em Python, utilizando FastAPI, Folium e OSMR para identificar coordenadas e gerar rotas otimizadas, com o objetivo de reduzir o tempo de trabalho e melhorar a qualidade de vida dos agentes. (Projeto em andamento)
-            </p>
+    <!-- Sobre Mim Section -->
+    <section id="sobre" class="sobre">
+      <div class="secao-container">
+        <h2 class="secao-titulo">Sobre Mim</h2>
+        <div class="sobre-conteudo">
+          <div class="sobre-grid">
+            <div class="sobre-card-info">
+              <h3>Minha Abordagem</h3>
+              <p>
+                Sou fascinado pela interseção entre código eficiente e análise analítica profunda. Minha trajetória como desenvolvedor Back-End me deu uma base sólida para estruturar bancos de dados, criar APIs rápidas e manipular grandes volumes de dados. 
+              </p>
+              <p style="margin-top: 1rem;">
+                Como Cientista de Dados, utilizo essas habilidades para desenvolver pipelines de dados de ponta a ponta: desde a extração automatizada em fontes complexas até a engenharia de atributos, modelagem preditiva e entrega de insights práticos que otimizam processos e geram valor financeiro imediato.
+              </p>
+            </div>
+            <div class="sobre-destaques">
+              <div class="destaque-item">
+                <span class="destaque-num">+35%</span>
+                <span class="destaque-desc">Eficiência operacional em automações RPA de auditoria</span>
+              </div>
+              <div class="destaque-item">
+                <span class="destaque-num">SQL</span>
+                <span class="destaque-desc">Otimização de bancos PostgreSQL & Integração de APIs</span>
+              </div>
+              <div class="destaque-item">
+                <span class="destaque-num">Python</span>
+                <span class="destaque-desc">Pandas, NumPy, Scikit-learn e FastAPI</span>
+              </div>
+            </div>
           </div>
         </div>
-
-        <div class="projeto-card" onclick="window.open('https://github.com/guilherme-miguel9/APP-INTEGRACAO-BD', '_blank')">
-          <div class="caixa-textos-projeto">
-            <img class="projetos-img" src="./view/images/bd.png" alt="software bd">
-            <h3 class="projeto-info">App para facilitar o uso ao Banco de dados</h3>
-            <p class="projeto-descricao">
-              Aplicação desenvolvida em Python com  a biblioteca Ttkbootstrap para interface gráfica. O software recebe um arquivo de entrada em Excel, processa os dados com Pandas e atualiza automaticamente um banco de dados PostgreSQL via SQLAlchemy, o que reduziu significativamente a dificuldade de acesso e manipulação de dados no banco PostgreSQL. [Para acessar o Projeto pode clicar na imagem]
-            </p>
-          </div>
-        </div>
-
-        <div class="projeto-card">
-          <div class="caixa-textos-projeto">
-            <h3 class="projeto-info">Automação de Processos com VBA</h3>
-            <p class="projeto-descricao">
-              Desenvolvi uma automação em VBA para Excel, que captura dados do SAP e identifica inconsistências, permitindo o envio dos erros encontrados para correção, o que aumentou a devolução correta e agilidade no tratamento das informações. Tivemos ganhos em cerca de 35% de melhoria com a devolução antecipada do erro.
-            </p>
-          </div>
-        </div>
-        
       </div>
+    </section>
 
-      <section id="contato" class="contato">
-        <h2 class="contato-titulo">Entre em Contato pelo LinkedIn! </h2>
-
-        <!-- <form class="contato-formulario" id="formulario" onsubmit="return enviarFormulario()">
-          <div class = "grupo-form">
-            <input placeholder="Nome" class="campo-form" id="nome">
+    <!-- Habilidades (Pipeline de Dados) Section -->
+    <section id="habilidades" class="habilidades">
+      <div class="secao-container">
+        <h2 class="secao-titulo">Meu Pipeline de Habilidades</h2>
+        <p class="secao-subtitulo">Como abordo problemas de dados de ponta a ponta</p>
+        
+        <div class="pipeline-grid">
+          
+          <div class="pipeline-card">
+            <div class="pipeline-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            </div>
+            <h3>1. Coleta & Integração</h3>
+            <p>Extração automatizada de dados operacionais e integração rápida de bases complexas.</p>
+            <ul class="pipeline-tags">
+              <li>Python</li>
+              <li>SQLAlchemy</li>
+              <li>PostgreSQL</li>
+              <li>SAP RPA</li>
+              <li>APIs REST</li>
+            </ul>
           </div>
 
-          <div class="grupo-form">
-              <textarea class="campo-form" placeholder="Digite sua mensagem" id="mensagem" rows="4"></textarea>
+          <div class="pipeline-card">
+            <div class="pipeline-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14h6v8H4zm10-7h6v15h-6zM4 2h6v8H4z"></path></svg>
+            </div>
+            <h3>2. Processamento & ETL</h3>
+            <p>Tratamento de dados estruturados e não-estruturados, engenharia de atributos e limpeza de ruídos.</p>
+            <ul class="pipeline-tags">
+              <li>Pandas</li>
+              <li>NumPy</li>
+              <li>ETL Pipelines</li>
+              <li>Data Cleaning</li>
+              <li>Excel VBA</li>
+            </ul>
           </div>
 
-          <button type="submit" class="botao-form">Enviar</button>
-        </form> -->
-      </section>
+          <div class="pipeline-card">
+            <div class="pipeline-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+            </div>
+            <h3>3. Modelagem & ML</h3>
+            <p>Criação e validação de modelos preditivos, algoritmos de classificação, clusterização e regressão.</p>
+            <ul class="pipeline-tags">
+              <li>Scikit-Learn</li>
+              <li>Model Tuning</li>
+              <li>Validação Cruzada</li>
+              <li>Algoritmos de Otimização</li>
+            </ul>
+          </div>
 
-    <!-- <footer>
-      <p>
-        Desenvolvido por Guilherme Miguel |
-        <a
-          href="https://github.com/Lyaker"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          GitHub
-        </a>
-      </p>
-    </footer> -->
+          <div class="pipeline-card">
+            <div class="pipeline-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path></svg>
+            </div>
+            <h3>4. Visualização & Entrega</h3>
+            <p>Criação de dashboards dinâmicos, relatórios gerenciais e comunicação clara de insights de negócio.</p>
+            <ul class="pipeline-tags">
+              <li>Folium Maps</li>
+              <li>Matplotlib</li>
+              <li>Seaborn</li>
+              <li>Dashboards</li>
+              <li>FastAPI Deploy</li>
+            </ul>
+          </div>
 
+        </div>
+      </div>
+    </section>
+
+    <!-- Data Science Interactive Playground -->
+    <section id="playground" class="playground">
+      <div class="secao-container">
+        <h2 class="secao-titulo">Interactive ML Playground</h2>
+        <p class="secao-subtitulo">Treine um modelo de Machine Learning diretamente no navegador</p>
+        
+        <div class="playground-layout">
+          <!-- Painel de Controles -->
+          <div class="painel-controles">
+            <h3>Parâmetros de Treino</h3>
+            
+            <div class="controle-grupo">
+              <label for="model-type">Tipo de Modelo</label>
+              <select id="model-type">
+                <option value="neural_network">Rede Neural Multicamadas (MLP)</option>
+                <option value="random_forest">Random Forest Classifier</option>
+                <option value="linear_regression">Regressão Linear Gradient Descent</option>
+              </select>
+            </div>
+
+            <div class="controle-grid">
+              <div class="controle-grupo">
+                <label for="learning-rate">Learning Rate (α)</label>
+                <select id="learning-rate">
+                  <option value="0.001">0.001 (Lento/Estável)</option>
+                  <option value="0.01" selected>0.01 (Recomendado)</option>
+                  <option value="0.1">0.1 (Rápido)</option>
+                  <option value="0.5">0.5 (Agressivo)</option>
+                </select>
+              </div>
+
+              <div class="controle-grupo">
+                <label for="epochs">Épocas de Treino</label>
+                <select id="epochs">
+                  <option value="50">50 Epochs</option>
+                  <option value="100" selected>100 Epochs</option>
+                  <option value="150">150 Epochs</option>
+                  <option value="200">200 Epochs</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="controle-grupo">
+              <label for="noise-level">Ruído nos Dados (Split)</label>
+              <input type="range" id="noise-level" min="5" max="30" value="15">
+              <span id="noise-val">15%</span>
+            </div>
+
+            <button id="btn-train" class="btn btn-primario btn-full">
+              Iniciar Treinamento
+            </button>
+          </div>
+
+          <!-- Monitor de Métricas -->
+          <div class="painel-monitor">
+            <div class="monitor-cabecalho">
+              <div class="status-indicator">
+                <span class="status-ponto idle" id="status-ponto"></span>
+                <span id="status-texto">Pronto para treinar</span>
+              </div>
+              <div class="epoch-counter" id="epoch-counter">Epoch: 0/0</div>
+            </div>
+
+            <div class="metricas-cards">
+              <div class="metrica-card">
+                <span class="metrica-titulo">Loss (Perda)</span>
+                <span class="metrica-valor" id="val-loss">1.5420</span>
+              </div>
+              <div class="metrica-card">
+                <span class="metrica-titulo">Accuracy (Acurácia)</span>
+                <span class="metrica-valor" id="val-accuracy">35.4%</span>
+              </div>
+            </div>
+
+            <div class="grafico-container">
+              <canvas id="loss-chart"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projetos Section -->
+    <section id="projetos" class="projetos">
+      <div class="secao-container">
+        <h2 class="projetos-titulo secao-titulo">Projetos em Destaque</h2>
+        <p class="secao-subtitulo">Soluções reais aplicando engenharia de dados e algoritmos</p>
+
+        <div class="projetos-conteudo">
+
+          <!-- Projeto 1: Roteirização -->
+          <div class="projeto-card" onclick="window.open('https://github.com/guilherme-miguel9/api_route', '_blank')">
+            <div class="projeto-img-placeholder">
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="projeto-card-icon"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"></polygon><line x1="9" y1="3" x2="9" y2="18"></line><line x1="15" y1="6" x2="15" y2="21"></line><path d="M12 9a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path></svg>
+            </div>
+            <div class="caixa-textos-projeto">
+              <div class="projeto-meta">
+                <span class="proj-tag">Data Routing & Otimização</span>
+              </div>
+              <h3 class="projeto-info">API de Roteirização Inteligente</h3>
+              <p class="projeto-descricao">
+                API desenvolvida em Python com FastAPI, Folium e OSMR. O sistema calcula rotas otimizadas e coordenadas geográficas de agentes em campo, visando a redução de custos de deslocamento e tempo de percurso.
+              </p>
+              <div class="projeto-tecnologias">
+                <span>FastAPI</span>
+                <span>OSRM</span>
+                <span>Folium</span>
+                <span>Geopandas</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Projeto 2: Banco de dados -->
+          <div class="projeto-card" onclick="window.open('https://github.com/guilherme-miguel9/APP-INTEGRACAO-BD', '_blank')">
+            <div class="projeto-img-placeholder">
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="projeto-card-icon"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path></svg>
+            </div>
+            <div class="caixa-textos-projeto">
+              <div class="projeto-meta">
+                <span class="proj-tag">Data Ingestion Pipeline</span>
+              </div>
+              <h3 class="projeto-info">Pipeline de Integração SQL & App Desktop</h3>
+              <p class="projeto-descricao">
+                Software de ingestão automatizada em Python com interface Ttkbootstrap. Processa arquivos de entrada (Excel/CSV) via Pandas e carrega os dados validados em um banco de dados PostgreSQL estruturado por meio do SQLAlchemy, simplificando consultas.
+              </p>
+              <div class="projeto-tecnologias">
+                <span>Pandas</span>
+                <span>PostgreSQL</span>
+                <span>SQLAlchemy</span>
+                <span>Ttkbootstrap</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Projeto 3: VBA Automations -->
+          <div class="projeto-card">
+            <div class="projeto-img-placeholder">
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="projeto-card-icon"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+            </div>
+            <div class="caixa-textos-projeto">
+              <div class="projeto-meta">
+                <span class="proj-tag">Process Automation & RPA</span>
+              </div>
+              <h3 class="projeto-info">Automação de Auditoria SAP & Analítica</h3>
+              <p class="projeto-descricao">
+                Robô de automação financeira desenvolvido em VBA. Coleta logs e relatórios diretamente do sistema SAP ERP, cruza bases de dados complexas para identificar inconsistências financeiras e operacionais, melhorando a assertividade em cerca de 35%.
+              </p>
+              <div class="projeto-tecnologias">
+                <span>VBA Excel</span>
+                <span>SAP Scripting</span>
+                <span>Data Audit</span>
+                <span>Data Analytics</span>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    </section>
+
+    <!-- Contato Section -->
+    <section id="contato" class="contato">
+      <div class="secao-container">
+        <h2 class="contato-titulo secao-titulo">Conecte-se Comigo</h2>
+        <p class="secao-subtitulo">Vamos debater sobre soluções de dados ou novas oportunidades!</p>
+
+        <div class="contato-wrapper">
+          <div class="contato-formulario-container">
+            <form class="contato-formulario" id="formulario" onsubmit="enviarMensagem(event)">
+              <div class="grupo-form">
+                <label for="nome">Seu Nome</label>
+                <input placeholder="Digite seu nome" class="campo-form" id="nome" required>
+              </div>
+
+              <div class="grupo-form">
+                <label for="mensagem">Mensagem</label>
+                <textarea class="campo-form" placeholder="Como posso ajudar você ou sua empresa?" id="mensagem" rows="4" required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primario btn-full">
+                Enviar via WhatsApp
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 8px; vertical-align: middle;"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+              </button>
+            </form>
+          </div>
+
+          <div class="contato-info-cards">
+            <a href="https://linkedin.com/in/guilherme-miguel-dev-data" target="_blank" class="contato-card-social">
+              <div class="social-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+              </div>
+              <div>
+                <h4>LinkedIn</h4>
+                <p>linkedin.com/in/guilherme-miguel-dev-data</p>
+              </div>
+            </a>
+
+            <a href="https://github.com/guilherme-miguel9" target="_blank" class="contato-card-social">
+              <div class="social-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              </div>
+              <div>
+                <h4>GitHub</h4>
+                <p>github.com/guilherme-miguel9</p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="secao-container footer-content">
+        <p>&copy; 2026 Guilherme Miguel. Todos os direitos reservados.</p>
+        <p>Desenvolvido com muito <span style="color: #00E8FC;">&lt;/&gt;</span>, Dados e Estatística.</p>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="./model/playground.js"></script>
     <script src="./model/botao_enviar.js"></script>
-
   </body>
 </html>
