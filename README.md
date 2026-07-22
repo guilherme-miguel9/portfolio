@@ -21,29 +21,34 @@ Um efeito dinâmico desenvolvido sob medida utilizando um algoritmo de partícul
 
 ## 🛠️ Projetos em Destaque
 
-### 📈 [API de Roteirização Inteligente & Otimização Geográfica](https://github.com/guilherme-miguel9/api_route)
-*   **Descrição:** API desenvolvida em Python para calcular trajetos otimizados para equipes de campo, reduzindo o tempo de trânsito e custos de deslocamento.
-*   **Tecnologias:** Python, FastAPI, Folium, OSRM, Geopandas.
-*   **Destaque:** Geração de mapas interativos integrados diretamente com dados geográficos e rotas reais.
+### 🗄️ [App de Integração & Sincronização SQL](https://github.com/guilherme-miguel9/APP-INTEGRACAO-BD)
+*   **Descrição:** Software desktop desenvolvido em Python para automatizar a leitura, limpeza e importação de planilhas Excel (`.xlsx`/`.xls`) diretamente em tabelas do banco PostgreSQL em alta performance.
+*   **Tecnologias:** Python, PostgreSQL, Pandas, Tkinter, Multi-threading (`psycopg2`).
+*   **Destaque:** Interface gráfica responsiva com processamento assíncrono multi-threading, garantindo que a aplicação não trave ou congele durante a carga de grandes volumes de dados.
 
-### 🗄️ [Pipeline de Ingestão SQL & App de Banco de Dados](https://github.com/guilherme-miguel9/APP-INTEGRACAO-BD)
-*   **Descrição:** Sistema completo de ETL que automatiza a validação e ingestão de planilhas operacionais complexas para um banco de dados relacional estruturado.
-*   **Tecnologias:** Python, Pandas, PostgreSQL, SQLAlchemy, Ttkbootstrap.
-*   **Destaque:** Interface gráfica simplificada para usuários não-técnicos realizarem cargas e atualizações validadas no banco de dados sem precisar de queries SQL.
+### 🤖 [Bot Auditor de Registros Operacionais](https://github.com/guilherme-miguel9/Bot-Auditor)
+*   **Descrição:** Solução inteligente de auditoria e validação operacional que processa instantaneamente dezenas de milhares de registros e notas de campo em segundos.
+*   **Tecnologias:** Python, Pandas, Validação Operacional, Regras de Negócio Avançadas, ETL.
+*   **Destaque:** Motor de validação de alta precisão que classifica automaticamente comentários em 8 categorias operacionais (ex: excesso de espaço, caracteres proibidos, notas incorretas), garantindo total conformidade no campo.
 
-### 🤖 Automação de Auditoria SAP & Analítica (VBA/RPA)
-*   **Descrição:** Automação de processos (RPA) para conciliação financeira e extração de logs do ERP SAP.
-*   **Tecnologias:** VBA, SAP Scripting, Auditoria de Dados.
-*   **Destaque:** Captura automatizada de inconsistências operacionais que trouxe **35% de ganho de eficiência** para o setor através da detecção precoce de falhas.
+### 🔒 Automação de Auditoria & Monitoramento SAP (RPA Corporativo)
+*   **Descrição:** Robô de automação (RPA) de alta precisão que coleta informações operacionais diretamente do ERP SAP em tempo real logo após a subida dos dados.
+*   **Tecnologias:** VBA Excel, SAP Scripting, Auditoria Operacional em Tempo Real.
+*   **Destaque:** Captura instantânea de divergências e erros no SAP, acionando as equipes para correção em até 24 horas (tempo hábil), o que trouxe **35% de ganho direto de assertividade operacional** e conformidade para o setor. *(Projeto mantido em ambiente privado/confidencial).*
+
+### 📚 [RAG-PDF: Assistente Operacional Inteligente](https://github.com/guilherme-miguel9/RAG-PDF)
+*   **Descrição:** Sistema de *Retrieval-Augmented Generation* (RAG) de nível de produção, projetado para extrair e responder perguntas sobre Procedimentos Operacionais Padrão (POPs) e manuais técnicos com **zero alucinação e citação exata de página**.
+*   **Tecnologias:** Python, LangChain, ChromaDB, Docling, Reranker Cross-Encoder, Streamlit, LM Studio (LLM 100% Local).
+*   **Destaque:** Execução 100% local com privacidade garantida, pipeline híbrido em 2 estágios (Vector Search + Bi-Encoder/Cross-Encoder Reranker) e interface inspirada no Apple Design System.
 
 ---
 
 ## 💻 Tecnologias Empregadas
 
-*   **Estrutura & Semântica:** HTML5 (com boas práticas de SEO)
-*   **Estilização:** CSS3 Avançado (Glassmorphic containers, Gradientes Navy Blue/Branco, Responsividade Mobile-First)
-*   **Comportamento:** Vanilla JavaScript (Simulador de rede neural física no fundo, gráfico animado em canvas 2D)
-*   **Hospedagem:** GitHub Pages
+*   **Estrutura & Semântica:** HTML5 moderno com boas práticas de SEO, Meta Tags Open Graph e Twitter Cards para compartilhamento profissional nas redes sociais.
+*   **Estilização:** CSS3 Avançado (Glassmorphic containers, Gradientes Navy Blue/Branco, responsividade Mobile-First e selos customizados).
+*   **Comportamento:** Vanilla JavaScript (Simulador de rede neural física com partículas de fundo, gráfico animado em canvas 2D e integração dinâmica de contato via WhatsApp).
+*   **Hospedagem & Deploy:** GitHub Pages com atualização automatizada via CI/CD nativo.
 
 ---
 
