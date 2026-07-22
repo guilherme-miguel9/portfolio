@@ -1,6 +1,6 @@
-# 📊 Portfólio de Ciência de Dados & Analytics — Guilherme Miguel
+# 🏛️ Portfólio de Engenharia de Dados & Automação (Python & IA) — Guilherme Miguel
 
-Bem-vindo ao meu portfólio profissional! Este projeto foi desenvolvido para demonstrar minhas habilidades na interseção entre engenharia de software e ciência de dados, focando na resolução de problemas reais de negócios por meio de algoritmos, otimização e pipelines automatizados.
+Bem-vindo ao meu portfólio profissional! Este projeto foi desenvolvido para demonstrar minhas habilidades na interseção entre **Engenharia de Dados, Automação de Processos (RPA) e Inteligência Artificial**, focando na construção de pipelines resilientes, transações ACID e resolução de gargalos operacionais críticos de negócios.
 
 🔗 **Acesse o portfólio online:** [guilherme-miguel9.github.io/portfolio](https://guilherme-miguel9.github.io/portfolio/)
 
@@ -8,38 +8,61 @@ Bem-vindo ao meu portfólio profissional! Este projeto foi desenvolvido para dem
 
 ## 🚀 Destaques do Portfólio
 
-### 1. **Laboratório Interativo de Machine Learning (ML)**
-Uma seção inovadora do portfólio que permite treinar modelos de aprendizado de máquina diretamente no navegador do visitante:
-*   **Parâmetros Personalizáveis:** Escolha entre **Rede Neural Multicamadas (MLP)**, **Classificador Random Forest** ou **Regressão Linear**, e ajuste a *Taxa de Aprendizado (Learning Rate)*, o número de *Épocas* e o nível de *Ruído dos Dados*.
-*   **Feedback em Tempo Real:** Acompanhe a curva de perda (*Loss*) diminuindo e a acurácia (*Accuracy*) aumentando por meio de um gráfico animado de dupla escala renderizado diretamente no HTML5 Canvas.
-*   **Fidelidade Matemática:** Os modelos simulam dinâmicas de convergência reais dependendo dos hiperparâmetros configurados.
+### 1. **Simulador Interativo de Machine Learning (ML)**
+Uma demonstração interativa no navegador do visitante que simula visualmente a dinâmica matemática de convergência de modelos analíticos:
+*   **Hiperparâmetros Personalizáveis:** Escolha entre **Rede Neural Multicamadas (MLP)**, **Classificador Random Forest** ou **Regressão Linear**, ajustando a *Taxa de Aprendizado (Learning Rate)*, *Épocas* e *Ruído dos Dados*.
+*   **Feedback em Tempo Real:** Acompanhe a curva de perda (*Loss*) e acurácia renderizadas dinamicamente no HTML5 Canvas.
+*   **Fidelidade Conceitual:** Modelagem da degradação exponencial de erro e convergência de algoritmos de aprendizado supervisionado.
 
-### 2. **Fundo Dinâmico de Rede Neural**
-Um efeito dinâmico desenvolvido sob medida utilizando um algoritmo de partículas em JavaScript para simular conexões neurais. As partículas flutuam pelo fundo da página e geram conexões que interagem e reagem à movimentação do mouse.
+### 2. **Fundo Dinâmico de Conexões Neurais**
+Efeito interativo desenvolvido em JavaScript (HTML5 Canvas 2D) simulando uma malha de rede em tempo real que reage à movimentação do mouse.
+
+---
+
+## 🏛️ Arquitetura & Resiliência de Pipelines (Boas Práticas de Engenharia)
+
+Como abordo e soluciono os 8 pilares críticos no desenvolvimento de pipelines de dados e automações em ambiente de produção:
+
+1. **Como trata arquivos corrompidos?**  
+   Validação estrutural no ato da leitura (`try-except`). Arquivos ou linhas defeituosas são capturados, isolados em uma fila de quarentena (*Dead-Letter Queue*) e registrados no log de auditoria sem travar o processamento do restante do lote.
+2. **Como evita duplicação?**  
+   Garantia por chaves primárias/compostas com cláusula `ON CONFLICT DO UPDATE / NOTHING` no PostgreSQL (Upsert) e cálculo de hashes criptográficos (SHA-256) na ingestão de registros.
+3. **Como valida schema?**  
+   Verificação antecipada de tipagem, colunas obrigatórias e domínios válidos utilizando **Pandas**, **SQLAlchemy** e **Pydantic** antes da persistência no banco.
+4. **Como trata rollback?**  
+   Toda escrita relacional ocorre dentro de transações explícitas (`BEGIN ... COMMIT`). Em caso de exceção durante um lote, o pipeline executa instantaneamente `db.session.rollback()`, revertendo o estado e garantindo atomicidade.
+5. **Como controla transações?**  
+   Inserções massivas são executadas em *Bulk Inserts* atômicos em blocos transacionados, impedindo modificações parciais na base de dados.
+6. **Como processa arquivos grandes sem estourar RAM?**  
+   Processamento em streaming por pedaços utilizando o parâmetro `chunksize` do Pandas e cursores *server-side* no banco relacional, apoiado por multi-threading assíncrono.
+7. **Como registra erros?**  
+   Módulo nativo de `logging` estruturado rotacionado em arquivo e tabelas de auditoria de jobs, armazenando carimbo de tempo, *stack trace*, ID do lote e contexto para rastreabilidade de ponta a ponta.
+8. **Como garante idempotência?**  
+   Rotinas projetadas para que o mesmo job ou planilha possa ser reexecutado dezenas de vezes gerando exatamente o mesmo estado final no banco de dados, sem duplicidade ou inconsistência.
 
 ---
 
 ## 🛠️ Projetos em Destaque
 
 ### 🗄️ [App de Integração & Sincronização SQL](https://github.com/guilherme-miguel9/APP-INTEGRACAO-BD)
-*   **Descrição:** Software desktop desenvolvido em Python para automatizar a leitura, limpeza e importação de planilhas Excel (`.xlsx`/`.xls`) diretamente em tabelas do banco PostgreSQL em alta performance.
+*   **Descrição:** Software desktop em Python para automatizar a importação de planilhas Excel (`.xlsx`/`.xls`) para bancos PostgreSQL em alta performance com controle transacional ACID e streaming (`chunksize`).
 *   **Tecnologias:** Python, PostgreSQL, Pandas, Tkinter, Multi-threading (`psycopg2`).
-*   **Destaque:** Interface gráfica responsiva com processamento assíncrono multi-threading, garantindo que a aplicação não trave ou congele durante a carga de grandes volumes de dados.
+*   **Destaque:** Interface gráfica responsiva com processamento assíncrono que não congela a UI durante ingestões de grandes volumes.
 
 ### 🤖 [Bot Auditor de Registros Operacionais](https://github.com/guilherme-miguel9/Bot-Auditor)
-*   **Descrição:** Solução inteligente de auditoria e validação operacional que processa instantaneamente dezenas de milhares de registros e notas de campo em segundos.
+*   **Descrição:** Solução inteligente de validação operacional que audita instantaneamente dezenas de milhares de registros de campo com validação rigorosa de schema.
 *   **Tecnologias:** Python, Pandas, Validação Operacional, Regras de Negócio Avançadas, ETL.
-*   **Destaque:** Motor de validação de alta precisão que classifica automaticamente comentários em 8 categorias operacionais (ex: excesso de espaço, caracteres proibidos, notas incorretas), garantindo total conformidade no campo.
+*   **Destaque:** Motor que classifica comentários em 8 categorias de conformidade (ex: excesso de espaço, caracteres proibidos) e isola inconsistências em quarentena.
 
 ### 🔒 Automação de Auditoria & Monitoramento SAP (RPA Corporativo)
-*   **Descrição:** Robô de automação (RPA) de alta precisão que coleta informações operacionais diretamente do ERP SAP em tempo real logo após a subida dos dados.
+*   **Descrição:** Robô de automação (RPA) de alta precisão que audita em tempo real dados operacionais subidos no ERP SAP.
 *   **Tecnologias:** VBA Excel, SAP Scripting, Auditoria Operacional em Tempo Real.
-*   **Destaque:** Captura instantânea de divergências e erros no SAP, acionando as equipes para correção em até 24 horas (tempo hábil), o que trouxe **35% de ganho direto de assertividade operacional** e conformidade para o setor. *(Projeto mantido em ambiente privado/confidencial).*
+*   **Destaque:** Processamento intensivo de **+75.297 avaliações/mês** distribuídas em 4 centrais regionais (**CR 12, 13, 14 e 15**), acionando equipes para correção ágil em até 24 horas (tempo hábil). Fundamentou um **ganho verificado de 35% de assertividade operacional** no setor. *(Projeto mantido em ambiente privado/confidencial).*
 
 ### 📚 [RAG-PDF: Assistente Operacional Inteligente](https://github.com/guilherme-miguel9/RAG-PDF)
-*   **Descrição:** Sistema de *Retrieval-Augmented Generation* (RAG) de nível de produção, projetado para extrair e responder perguntas sobre Procedimentos Operacionais Padrão (POPs) e manuais técnicos com **zero alucinação e citação exata de página**.
+*   **Descrição:** Sistema RAG de nível de produção, projetado para extrair e responder perguntas sobre Procedimentos Operacionais Padrão (POPs) com **mitigação ativa de alucinações via citação de página**.
 *   **Tecnologias:** Python, LangChain, ChromaDB, Docling, Reranker Cross-Encoder, Streamlit, LM Studio (LLM 100% Local).
-*   **Destaque:** Execução 100% local com privacidade garantida, pipeline híbrido em 2 estágios (Vector Search + Bi-Encoder/Cross-Encoder Reranker) e interface inspirada no Apple Design System.
+*   **Destaque:** Execução 100% local e privada, pipeline híbrido em 2 estágios (Vector Search + Cross-Encoder Reranker) e extração estruturada de tabelas e textos via Docling.
 
 ---
 
