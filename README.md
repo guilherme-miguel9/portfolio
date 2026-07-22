@@ -88,5 +88,5 @@ Em seguida, acesse no seu navegador: `http://localhost:8000`
 
 ## 📧 Contato
 
-*   **LinkedIn:** [linkedin.com/in/guilherme-miguel-dev-data](https://linkedin.com/in/guilherme-miguel-dev-data)
+*   **LinkedIn:** [linkedin.com/in/guilherme-barros-55bb73286](https://linkedin.com/in/guilherme-barros-55bb73286)
 *   **GitHub:** [github.com/guilherme-miguel9](https://github.com/guilherme-miguel9)
