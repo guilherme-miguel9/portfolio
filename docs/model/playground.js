@@ -341,11 +341,13 @@ const initMLPlayground = () => {
         // Lock inputs & states
         isTraining = true;
         btnTrain.disabled = true;
-        btnTrain.textContent = "Treinando...";
+        const btnSpan = btnTrain.querySelector("span");
+        if (btnSpan) btnSpan.textContent = "Treinando...";
+        else btnTrain.textContent = "Treinando...";
         btnTrain.style.opacity = "0.7";
         btnTrain.style.cursor = "not-allowed";
 
-        statusPonto.className = "status-ponto training";
+        statusPonto.className = "status-dot training";
         statusTexto.textContent = "Treinando modelo...";
 
         const model = modelType.value;
@@ -386,11 +388,12 @@ const initMLPlayground = () => {
                 
                 // Unlock interface
                 btnTrain.disabled = false;
-                btnTrain.textContent = "Iniciar Treinamento";
+                if (btnSpan) btnSpan.textContent = "Iniciar Treinamento do Modelo";
+                else btnTrain.textContent = "Iniciar Treinamento do Modelo";
                 btnTrain.style.opacity = "1";
                 btnTrain.style.cursor = "pointer";
 
-                statusPonto.className = "status-ponto complete";
+                statusPonto.className = "status-dot completed";
                 
                 // Show final result statement
                 const finalAcc = (acc * 100).toFixed(1);

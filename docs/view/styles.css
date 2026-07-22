@@ -626,6 +626,19 @@ h1, h2, h3, h4, h5, h6 {
   color: var(--accent-cyan);
 }
 
+.private-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-slate);
+  font-weight: 500;
+  font-size: 0.88rem;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+}
+
 /* ==========================================================================
    LABORATÓRIO / SIMULADOR DE MACHINE LEARNING
    ========================================================================== */
