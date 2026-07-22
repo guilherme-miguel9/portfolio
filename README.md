@@ -57,7 +57,7 @@ Como abordo e soluciono os 8 pilares críticos no desenvolvimento de pipelines d
 ### 🔒 Automação de Auditoria & Monitoramento SAP (RPA Corporativo)
 *   **Descrição:** Robô de automação (RPA) de alta precisão que audita em tempo real dados operacionais subidos no ERP SAP.
 *   **Tecnologias:** VBA Excel, SAP Scripting, Auditoria Operacional em Tempo Real.
-*   **Destaque:** Processamento intensivo de **+75.297 avaliações/mês** distribuídas em 4 centrais regionais (**CR 12, 13, 14 e 15**), acionando equipes para correção ágil em até 24 horas (tempo hábil). Fundamentou um **ganho verificado de 35% de assertividade operacional** no setor. *(Projeto mantido em ambiente privado/confidencial).*
+*   **Destaque:** Processamento intensivo e automatizado de **+75.297 avaliações e registros mensais**, acionando equipes para correção ágil em até 24 horas (tempo hábil). O controle contínuo fundamentou um **ganho verificado de 35% de assertividade e conformidade operacional**. *(Projeto mantido em ambiente privado/confidencial).*
 
 ### 📚 [RAG-PDF: Assistente Operacional Inteligente](https://github.com/guilherme-miguel9/RAG-PDF)
 *   **Descrição:** Sistema RAG de nível de produção, projetado para extrair e responder perguntas sobre Procedimentos Operacionais Padrão (POPs) com **mitigação ativa de alucinações via citação de página**.
