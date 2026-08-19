@@ -46,6 +46,7 @@
             <li><a href="#inicio" class="nav-link">Início</a></li>
             <li><a href="#sobre" class="nav-link">Sobre</a></li>
             <li><a href="#habilidades" class="nav-link">Competências</a></li>
+            <li><a href="#arquitetura" class="nav-link">Arquitetura</a></li>
             <li><a href="#projetos" class="nav-link">Projetos</a></li>
             <li><a href="#laboratorio" class="nav-link">Simulador ML</a></li>
             <li><a href="#contato" class="nav-link btn-nav-contato">Contato</a></li>
@@ -60,31 +61,30 @@
         <div class="hero-content">
           <div class="hero-badge">
             <span class="dot-pulse"></span>
-            <span>Engenheiro de Dados & Automação | Python & Inteligência Artificial</span>
+            <span id="hero-badge-texto">Engenheiro de Dados & Automação | Python & Inteligência Artificial</span>
           </div>
           
-          <h1 class="hero-title">
+          <h1 id="hero-titulo" class="hero-title">
             Olá, me chamo <br /><span class="highlight-name">Guilherme Miguel.</span>
           </h1>
           
-          <p class="hero-subtitle">
+          <p id="hero-subtitulo" class="hero-subtitle">
             Desenvolvo soluções em Python para engenharia de dados, automação de processos e aplicações de Inteligência Artificial.
           </p>
           
-          <p class="hero-description">
+          <p id="hero-descricao" class="hero-description">
             Especialista na construção de pipelines analíticos robustos em Python (Pandas, SQLAlchemy), controle transacional em bancos PostgreSQL, automação de rotinas corporativas de alto volume e sistemas RAG locais estruturados.
           </p>
 
           <div class="hero-actions">
-            <a href="#projetos" class="btn btn-primary">Ver Projetos</a>
-            <a href="#contato" class="btn btn-outline">Entre em Contato</a>
+            <a id="hero-btn-projetos" href="#projetos" class="btn btn-primary">Ver Projetos</a>
+            <a id="hero-btn-contato" href="#contato" class="btn btn-outline">Entre em Contato</a>
           </div>
         </div>
 
         <div class="hero-image-wrapper">
           <div class="profile-card">
-            <!-- A imagem da foto de perfil original é carregada aqui -->
-            <img src="./view/images/foto-perfil.jpg" alt="Foto de Guilherme Miguel" class="profile-img" />
+            <img id="hero-foto" src="./view/images/foto-perfil.jpg" alt="Foto de Guilherme Miguel" class="profile-img" />
             <div class="profile-glow"></div>
           </div>
         </div>
@@ -95,35 +95,21 @@
     <section id="sobre" class="section sobre-section">
       <div class="container">
         <div class="section-header">
-          <span class="section-tag">Perfil Profissional</span>
-          <h2 class="section-title">Sobre Mim</h2>
+          <span id="sobre-tag" class="section-tag">Perfil Profissional</span>
+          <h2 id="sobre-titulo" class="section-title">Sobre Mim</h2>
           <div class="section-divider"></div>
         </div>
 
         <div class="sobre-card">
           <div class="sobre-text">
-            <h3>Trajetória e Abordagem Técnica</h3>
-            <p>
-              Com experiência direcionada ao desenvolvimento de soluções de dados e automação, atuo na concepção, construção e manutenção de pipelines analíticos, processamento de dados corporativos e integração de rotinas complexas.
-            </p>
-            <p>
-              Utilizo Python, bancos de dados relacionais e ferramentas de IA local, aplicando boas práticas de resiliência, validação de dados e controle transacional para otimizar processos e eliminar gargalos operacionais.
-            </p>
+            <h3 id="sobre-subtitulo">Trajetória e Abordagem Técnica</h3>
+            <div id="sobre-textos">
+              <!-- Conteúdo renderizado dinamicamente via dados.js -->
+            </div>
           </div>
 
-          <div class="sobre-stats-grid">
-            <div class="stat-box">
-              <span class="stat-num">+75.297</span>
-              <span class="stat-label">Registros e avaliações mensais processadas com coleta e análise diretamente do ERP SAP</span>
-            </div>
-            <div class="stat-box">
-              <span class="stat-num">+35%</span>
-              <span class="stat-label">Ganho de eficiência operacional, medido pela comparação entre o processo manual e o automatizado</span>
-            </div>
-            <div class="stat-box">
-              <span class="stat-num">Python & IA</span>
-              <span class="stat-label">Pipelines analíticos, PostgreSQL, Pandas, LangChain e RAG Local</span>
-            </div>
+          <div id="sobre-metricas" class="sobre-stats-grid">
+            <!-- Métricas renderizadas dinamicamente via dados.js -->
           </div>
         </div>
       </div>
@@ -133,176 +119,31 @@
     <section id="habilidades" class="section skills-section">
       <div class="container">
         <div class="section-header">
-          <span class="section-tag">Especialidades</span>
-          <h2 class="section-title">Competências & Ferramentas</h2>
+          <span id="competencias-tag" class="section-tag">Especialidades</span>
+          <h2 id="competencias-titulo" class="section-title">Competências & Ferramentas</h2>
           <div class="section-divider"></div>
         </div>
 
-        <div class="skills-grid">
-          <div class="skill-card">
-            <div class="skill-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
-            </div>
-            <h3>Coleta & Banco de Dados</h3>
-            <p>Modelagem relacional, otimização de consultas e ingestão de dados em larga escala.</p>
-            <div class="skill-badges">
-              <span>PostgreSQL</span>
-              <span>SQLAlchemy</span>
-              <span>APIs REST</span>
-              <span>SAP Integration</span>
-            </div>
-          </div>
-
-          <div class="skill-card">
-            <div class="skill-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14h6v8H4zm10-7h6v15h-6zM4 2h6v8H4z"></path></svg>
-            </div>
-            <h3>Processamento & ETL</h3>
-            <p>Limpeza de dados, engenharia de atributos e tratamento de bases complexas ou incompletas.</p>
-            <div class="skill-badges">
-              <span>Python</span>
-              <span>Pandas</span>
-              <span>NumPy</span>
-              <span>Excel VBA</span>
-            </div>
-          </div>
-
-          <div class="skill-card">
-            <div class="skill-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4l3 3"></path></svg>
-            </div>
-            <h3>Modelagem & Machine Learning</h3>
-            <p>Desenvolvimento e validação cruzada de modelos preditivos, regressão e classificação.</p>
-            <div class="skill-badges">
-              <span>Scikit-Learn</span>
-              <span>Estatística</span>
-              <span>Otimização</span>
-              <span>Tuning</span>
-            </div>
-          </div>
-
-          <div class="skill-card">
-            <div class="skill-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-            </div>
-            <h3>Deploy & Visualização</h3>
-            <p>Construção de relatórios gerenciais, mapas geográficos interativos e microsserviços.</p>
-            <div class="skill-badges">
-              <span>FastAPI</span>
-              <span>Folium Maps</span>
-              <span>Matplotlib</span>
-              <span>Seaborn</span>
-            </div>
-          </div>
+        <div id="competencias-grid" class="skills-grid">
+          <!-- Cards renderizados dinamicamente via dados.js -->
         </div>
+      </div>
+    </section>
+
     <!-- Seção de Arquitetura & Confiabilidade de Pipelines -->
     <section id="arquitetura" class="section arch-section">
       <div class="container">
         <div class="section-header">
-          <span class="section-tag">Confiabilidade & ACID</span>
-          <h2 class="section-title">Arquitetura & Resiliência de Pipelines</h2>
+          <span id="arquitetura-tag" class="section-tag">Confiabilidade & ACID</span>
+          <h2 id="arquitetura-titulo" class="section-title">Arquitetura & Resiliência de Pipelines</h2>
           <div class="section-divider"></div>
-          <p class="section-subtitle">
+          <p id="arquitetura-subtitulo" class="section-subtitle">
             Como soluciono os desafios críticos de integridade, escalabilidade e observabilidade no processamento e automação de dados em produção:
           </p>
         </div>
 
-        <div class="arch-grid">
-          <!-- 1. Arquivos Corrompidos -->
-          <div class="arch-card">
-            <span class="arch-question">[ 01. Tratamento de Exceções ]</span>
-            <h3>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
-              Como você trata arquivos corrompidos?
-            </h3>
-            <p>
-              Aplico validação estrutural no ato da leitura com blocos <code>try-except</code> e bibliotecas open-source robustas. Registros ou planilhas corrompidas são capturados, isolados em uma fila de quarentena (<em>Dead-Letter Queue</em>) e registrados no log de auditoria sem abortar ou travar o restante do lote de processamento.
-            </p>
-          </div>
-
-          <!-- 2. Evitar Duplicação -->
-          <div class="arch-card">
-            <span class="arch-question">[ 02. Unicidade & Upsert ]</span>
-            <h3>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="9" x2="15" y2="15"></line><line x1="15" y1="9" x2="9" y2="15"></line></svg>
-              Como evita duplicação?
-            </h3>
-            <p>
-              Implemento chaves primárias e compostas no PostgreSQL operadas por comandos de <code>UPSERT</code> (cláusula <code>ON CONFLICT DO UPDATE / NOTHING</code>). Na carga de planilhas e relatórios operacionais, calculo hashes criptográficos únicos (SHA-256) de cada registro para verificação instantânea de duplicidades.
-            </p>
-          </div>
-
-          <!-- 3. Validação de Schema -->
-          <div class="arch-card">
-            <span class="arch-question">[ 03. Governança & Contratos ]</span>
-            <h3>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-              Como valida schema?
-            </h3>
-            <p>
-              Utilizo validação por contratos de dados com <strong>Pandas</strong>, <strong>SQLAlchemy</strong> e <strong>Pydantic</strong> antes da persistência. O schema verifica rigorosamente tipagens (inteiros, floats, datas), nulidade permitida e domínios de negócio esperados, rejeitando anomalias na camada de entrada.
-            </p>
-          </div>
-
-          <!-- 4. Rollback -->
-          <div class="arch-card">
-            <span class="arch-question">[ 04. Resiliência Atômica ]</span>
-            <h3>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
-              Como trata rollback?
-            </h3>
-            <p>
-              Toda operação de escrita em banco relacional é encapsulada em transações explícitas. Se qualquer exceção ou falha de constraint ocorrer durante um lote de inserção ou atualização, o pipeline executa instantaneamente um <code>db.session.rollback()</code>, revertendo as mudanças e preservando a consistência do banco.
-            </p>
-          </div>
-
-          <!-- 5. Controle de Transações -->
-          <div class="arch-card">
-            <span class="arch-question">[ 05. ACID & Atomicidade ]</span>
-            <h3>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
-              Como controla transações?
-            </h3>
-            <p>
-              Através de blocos <code>BEGIN ... COMMIT</code> com isolamento transacional programado. Inserções em massa são agrupadas em *Bulk Inserts* geridos por context managers em Python, assegurando atomicidade integral: ou o lote inteiro é processado com sucesso, ou o estado original permanece intacto.
-            </p>
-          </div>
-
-          <!-- 6. Arquivos Grandes -->
-          <div class="arch-card">
-            <span class="arch-question">[ 06. Performance & Streaming ]</span>
-            <h3>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
-              Como processa arquivos grandes?
-            </h3>
-            <p>
-              Evito estouro de memória RAM (<code>MemoryError</code>) utilizando processamento em streaming com o parâmetro <code>chunksize</code> do Pandas ou cursores *server-side* no PostgreSQL. Os dados são lidos, transformados e carregados em pedaços assíncronos via multi-threading.
-            </p>
-          </div>
-
-          <!-- 7. Registro de Erros -->
-          <div class="arch-card">
-            <span class="arch-question">[ 07. Observabilidade & Logs ]</span>
-            <h3>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
-              Como registra erros?
-            </h3>
-            <p>
-              Utilizo o módulo nativo de <code>logging</code> estruturado do Python gerando saídas rotacionadas em arquivo e tabelas de auditoria de execuções no banco de dados. Cada falha registra carimbo de tempo, *stack trace* completo, ID de correlação do lote e contexto para diagnósticos imediatos.
-            </p>
-          </div>
-
-          <!-- 8. Idempotência -->
-          <div class="arch-card">
-            <span class="arch-question">[ 08. Confiabilidade Operacional ]</span>
-            <h3>
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
-              Como garante idempotência?
-            </h3>
-            <p>
-              Desenvolvo rotinas puramente idempotentes: um mesmo arquivo Excel, requisição de API ou job de auditoria pode ser executado 1 ou 1000 vezes sem alterar ou duplicar o estado final da base. A lógica verifica a existência prévia de registros e aplica reconciliação de estados.
-            </p>
-          </div>
+        <div id="arquitetura-grid" class="arch-grid">
+          <!-- Cards de Resiliência renderizados dinamicamente via dados.js -->
         </div>
       </div>
     </section>
@@ -311,146 +152,28 @@
     <section id="projetos" class="section projects-section">
       <div class="container">
         <div class="section-header">
-          <span class="section-tag">Portfólio Prático</span>
-          <h2 class="section-title">Projetos em Destaque</h2>
+          <span id="projetos-tag" class="section-tag">Portfólio Prático</span>
+          <h2 id="projetos-titulo" class="section-title">Projetos em Destaque</h2>
           <div class="section-divider"></div>
-          <p class="section-subtitle">
+          <p id="projetos-subtitulo" class="section-subtitle">
             Soluções completas que combinam engenharia de dados, modelagem analítica, inteligência artificial e automação de processos.
           </p>
         </div>
 
-        <div class="projects-grid">
-          
-          <!-- Projeto 1: APP-INTEGRACAO-BD -->
-          <article class="project-card">
-            <div class="project-img-wrapper">
-              <img src="./view/images/bd.png" alt="App de Integração e Banco de Dados" class="project-img" />
-              <div class="project-img-overlay">
-                <span>Ingestão & Sincronização SQL</span>
-              </div>
-            </div>
-            <div class="project-body">
-              <span class="project-category">[ Engenharia de Dados & ETL ]</span>
-              <h3 class="project-title">App de Integração & Sincronização SQL</h3>
-              <p class="project-desc">
-                Software desktop em Python para validação, limpeza e importação de planilhas Excel (`.xlsx`/`.xls`) para bancos PostgreSQL. Desenvolvido com Tkinter e processamento assíncrono multi-threading em segundo plano sem bloquear a interface, aplicando controle transacional ACID e leitura em streaming (<code>chunksize</code>).
-              </p>
-              <div class="project-tags">
-                <span>Python</span>
-                <span>PostgreSQL</span>
-                <span>Pandas</span>
-                <span>Tkinter</span>
-                <span>Multi-threading</span>
-              </div>
-              <div class="project-footer">
-                <a href="https://github.com/guilherme-miguel9/APP-INTEGRACAO-BD" target="_blank" class="project-link">
-                  <span>Ver no GitHub</span>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Projeto 2: Bot-Auditor -->
-          <article class="project-card">
-            <div class="project-img-wrapper">
-              <img src="./view/images/bot-aud.png" alt="Bot Auditor Operacional" class="project-img" />
-              <div class="project-img-overlay">
-                <span>Validação & Auditoria de Dados</span>
-              </div>
-            </div>
-            <div class="project-body">
-              <span class="project-category">[ Auditoria & Validação Operacional ]</span>
-              <h3 class="project-title">Bot Auditor de Registros Operacionais</h3>
-              <p class="project-desc">
-                Automatiza a validação e auditoria de dezenas de milhares de registros operacionais de campo. O motor aplica validação antecipada de schema e regras de negócio, categorizando comentários em 8 classificações de conformidade e isolando inconsistências em quarentena de forma automatizada.
-              </p>
-              <div class="project-tags">
-                <span>Python</span>
-                <span>Pandas</span>
-                <span>Validação de Dados</span>
-                <span>Regras de Negócio</span>
-                <span>ETL</span>
-              </div>
-              <div class="project-footer">
-                <a href="https://github.com/guilherme-miguel9/Bot-Auditor" target="_blank" class="project-link">
-                  <span>Ver no GitHub</span>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
-                </a>
-              </div>
-            </div>
-          </article>
-
-          <!-- Projeto 3: Automação VBA/SAP -->
-          <article class="project-card">
-            <div class="project-img-wrapper">
-              <img src="./view/images/bot-sap.webp" alt="Automação VBA e SAP" class="project-img" />
-              <div class="project-img-overlay">
-                <span>RPA & Monitoramento SAP</span>
-              </div>
-            </div>
-            <div class="project-body">
-              <span class="project-category">[ Automação RPA & ERP SAP ]</span>
-              <h3 class="project-title">Automação de Auditoria & Monitoramento SAP</h3>
-              <p class="project-desc">
-                Robô de automação (RPA) que coleta e analisa dados operacionais diretamente do ERP SAP. Processando um volume superior a <strong>75.297 avaliações e registros mensais</strong> de forma automatizada, identifica desvios e notifica as equipes para correção (&lt;24h tempo hábil), gerando <strong>+35% de ganho de eficiência operacional, medido pela comparação entre o processo manual e o automatizado</strong>.
-              </p>
-              <div class="project-tags">
-                <span>VBA Excel</span>
-                <span>SAP Scripting</span>
-                <span>RPA / Automação</span>
-                <span>Tempo Real</span>
-              </div>
-              <div class="project-footer">
-                <div class="private-badge">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                  <span>Ambiente Corporativo Privado</span>
-                </div>
-              </div>
-            </div>
-          </article>
-
-          <!-- Projeto 4: RAG-PDF -->
-          <article class="project-card">
-            <div class="project-img-wrapper">
-              <div class="project-img-overlay">
-                <span>RAG 100% Local (LangChain)</span>
-              </div>
-            </div>
-            <div class="project-body">
-              <span class="project-category">[ Inteligência Artificial & LLMs ]</span>
-              <h3 class="project-title">RAG-PDF: Assistente Operacional Inteligente</h3>
-              <p class="project-desc">
-                Sistema RAG executado 100% local para consulta de POPs e manuais técnicos, com respostas fundamentadas nas fontes recuperadas e referência às páginas utilizadas. Utiliza LangChain, Docling, ChromaDB e reranking com Cross-Encoder, com interface em Streamlit.
-              </p>
-              <div class="project-tags">
-                <span>LangChain</span>
-                <span>ChromaDB</span>
-                <span>Docling</span>
-                <span>Streamlit</span>
-                <span>Reranker</span>
-              </div>
-              <div class="project-footer">
-                <a href="https://github.com/guilherme-miguel9/RAG-PDF" target="_blank" class="project-link">
-                  <span>Ver no GitHub</span>
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
-                </a>
-              </div>
-            </div>
-          </article>
-
+        <div id="projetos-grid" class="projects-grid">
+          <!-- Cards de Projetos renderizados dinamicamente via dados.js -->
         </div>
       </div>
     </section>
 
-    <!-- Seção Laboratório / Simulador de Machine Learning (Alinhado e perfeitamente enquadrado) -->
+    <!-- Seção Laboratório / Simulador de Machine Learning -->
     <section id="laboratorio" class="section lab-section">
       <div class="container">
         <div class="section-header">
-          <span class="section-tag">Demonstração Interativa</span>
-          <h2 class="section-title">Simulador Interativo de Machine Learning</h2>
+          <span id="simulador-tag" class="section-tag">Demonstração Interativa</span>
+          <h2 id="simulador-titulo" class="section-title">Simulador Interativo de Machine Learning</h2>
           <div class="section-divider"></div>
-          <p class="section-subtitle">
+          <p id="simulador-subtitulo" class="section-subtitle">
             Ajuste os hiperparâmetros abaixo para simular visualmente no navegador a dinâmica matemática de convergência e curvas de aprendizado de diferentes algoritmos.
           </p>
         </div>
@@ -536,10 +259,10 @@
     <section id="contato" class="section contact-section">
       <div class="container">
         <div class="section-header">
-          <span class="section-tag">Fale Comigo</span>
-          <h2 class="section-title">Conecte-se e Vamos Conversar</h2>
+          <span id="contato-tag" class="section-tag">Fale Comigo</span>
+          <h2 id="contato-titulo" class="section-title">Conecte-se e Vamos Conversar</h2>
           <div class="section-divider"></div>
-          <p class="section-subtitle">
+          <p id="contato-subtitulo" class="section-subtitle">
             Estou à disposição para novos desafios, projetos em Ciência de Dados e oportunidades profissionais.
           </p>
         </div>
@@ -547,7 +270,7 @@
         <div class="contact-grid">
           
           <div class="contact-form-box">
-            <h3>Envie uma mensagem direta</h3>
+            <h3 id="contato-form-titulo">Envie uma mensagem direta</h3>
             <form id="formulario" class="contact-form" onsubmit="enviarMensagem(event)">
               <div class="form-group">
                 <label for="nome">Seu Nome</label>
@@ -560,34 +283,14 @@
               </div>
 
               <button type="submit" class="btn btn-primary btn-full">
-                <span>Enviar pelo WhatsApp</span>
+                <span id="contato-btn-texto">Enviar pelo WhatsApp</span>
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
               </button>
             </form>
           </div>
 
-          <div class="contact-links-box">
-            <h3>Redes Profissionais</h3>
-            
-            <a href="https://linkedin.com/in/guilherme-barros-55bb73286" target="_blank" class="social-card">
-              <div class="social-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-              </div>
-              <div class="social-info">
-                <h4>LinkedIn Profissional</h4>
-                <p>Conecte-se comigo no LinkedIn</p>
-              </div>
-            </a>
-
-            <a href="https://github.com/guilherme-miguel9" target="_blank" class="social-card">
-              <div class="social-icon">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-              </div>
-              <div class="social-info">
-                <h4>Repositório GitHub</h4>
-                <p>Confira meus códigos e contribuições</p>
-              </div>
-            </a>
+          <div id="contato-redes-box" class="contact-links-box">
+            <!-- Redes sociais renderizadas dinamicamente via dados.js -->
           </div>
 
         </div>
@@ -597,12 +300,16 @@
     <!-- Rodapé -->
     <footer class="footer">
       <div class="container footer-container">
-        <p>&copy; 2026 Guilherme Miguel. Todos os direitos reservados.</p>
-        <p class="footer-note">Desenvolvido com foco em alta performance, UX e Ciência de Dados.</p>
+        <p id="footer-copyright">&copy; 2026 Guilherme Miguel. Todos os direitos reservados.</p>
+        <p id="footer-nota" class="footer-note">Desenvolvido com foco em alta performance, UX e Ciência de Dados.</p>
       </div>
     </footer>
 
-    <!-- Scripts -->
+    <!-- Scripts de Dados e Renderização Dinâmica -->
+    <script src="./model/dados.js"></script>
+    <script src="./model/render.js"></script>
+
+    <!-- Scripts Funcionais Interativos -->
     <script src="./model/playground.js"></script>
     <script src="./model/botao_enviar.js"></script>
   </body>

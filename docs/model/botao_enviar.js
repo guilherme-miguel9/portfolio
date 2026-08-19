@@ -24,9 +24,11 @@ function enviarMensagem(event) {
     return false;
   }
 
-  // Número do WhatsApp de destino. Deixamos vazio caso o usuário queira configurar depois
-  // ou abre o seletor de contatos do WhatsApp se for para link genérico.
-  const telefone = ""; 
+  // Número do WhatsApp de destino configurado em dados.js
+  let telefone = "";
+  if (typeof PORTFOLIO_DADOS !== "undefined" && PORTFOLIO_DADOS.contato && PORTFOLIO_DADOS.contato.whatsapp) {
+    telefone = PORTFOLIO_DADOS.contato.whatsapp.numeroTelefone || "";
+  }
 
   const texto = `Olá Guilherme, me chamo ${nome}!\n\n${mensagem}`;
 

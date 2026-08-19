@@ -34,7 +34,7 @@ Como abordo e soluciono os 8 pilares críticos no desenvolvimento de pipelines d
 5. **Como controla transações?**  
    Inserções massivas são executadas em Bulk Inserts atômicos em blocos transacionados, impedindo modificações parciais na base de dados.
 6. **Como processa arquivos grandes sem estourar RAM?**  
-   Processamento em streaming por pedaços utilizando o parâmetro `chunksize` do Pandas e cursores server-side no banco relacional, apoiado por multi-threading assíncrono.
+   Processamento em lotes (batch) por pedaços utilizando o parâmetro `chunksize` do Pandas. Ao acionar o software sob demanda, os arquivos são lidos, validados e persistidos de forma assíncrona via multi-threading sem sobrecarregar a memória.
 7. **Como registra erros?**  
    Módulo nativo de `logging` estruturado rotacionado em arquivo e tabelas de auditoria de jobs, armazenando carimbo de tempo, stack trace, ID do lote e contexto para rastreabilidade de ponta a ponta.
 8. **Como garante idempotência?**  
@@ -45,8 +45,8 @@ Como abordo e soluciono os 8 pilares críticos no desenvolvimento de pipelines d
 ## Projetos em Destaque
 
 ### [App de Integração & Sincronização SQL](https://github.com/guilherme-miguel9/APP-INTEGRACAO-BD)
-* **Descrição:** Software desktop em Python para validação, limpeza e importação de planilhas Excel (`.xlsx`/`.xls`) para bancos PostgreSQL. Desenvolvido com Tkinter e processamento assíncrono multi-threading em segundo plano sem bloquear a interface, aplicando controle transacional ACID e leitura em streaming (`chunksize`).
-* **Tecnologias:** Python, PostgreSQL, Pandas, Tkinter, Multi-threading (`psycopg2`).
+* **Descrição:** Software desktop em Python para validação, limpeza e importação de planilhas Excel (`.xlsx`/`.xls`) para bancos PostgreSQL. Desenvolvido com Python e processamento assíncrono multi-threading em segundo plano sem bloquear a interface, aplicando controle transacional ACID e leitura em batch (`chunksize`).
+* **Tecnologias:** Python, PostgreSQL, Pandas, PySide6, Multi-threading.
 * **Destaque:** Interface gráfica com processamento em segundo plano sem bloquear a interface durante ingestões de grandes volumes.
 
 ### [Bot Auditor de Registros Operacionais](https://github.com/guilherme-miguel9/Bot-Auditor)
@@ -75,18 +75,32 @@ Como abordo e soluciono os 8 pilares críticos no desenvolvimento de pipelines d
 
 ---
 
+## ✏️ Como Editar Textos, Imagens e Projetos pelo VS Code
+
+Todos os conteúdos do portfólio estão centralizados em um único arquivo fácil de editar: **`docs/model/dados.js`**.
+
+Você **não precisa mexer no código HTML**:
+1. Abra o arquivo [`docs/model/dados.js`](file:///Users/guilhermemiguel/Documents/portfolio/docs/model/dados.js) no VS Code.
+2. Altere qualquer texto, métrica, links ou caminhos de fotos/imagens entre as aspas `"..."`.
+3. Para **adicionar um novo projeto**, basta copiar um bloco de projeto existente no array `projetos.lista` e preencher os dados.
+4. Salve o arquivo (`Ctrl + S`) e o site já estará atualizado!
+
+---
+
 ## Estrutura de Arquivos
 
 ```text
 portfolio/
 ├── docs/
-│   ├── index.html              # Página principal (SEO & Semântica)
+│   ├── index.html              # Página principal (Estrutura semântica limpa & SEO)
 │   ├── view/
 │   │   ├── styles.css          # Estilos CSS, Variáveis e Responsividade
-│   │   └── images/             # Imagens e ativos visuais do projeto
+│   │   └── images/             # Imagens e fotos do portfólio
 │   └── model/
+│       ├── dados.js            # 📝 PAINEL CENTRAL DE CONTEÚDO (Edite tudo por aqui!)
+│       ├── render.js           # 🚀 Injeção e renderização dinâmica dos dados
 │       ├── playground.js       # Lógica do Simulador de ML e Rede Neural de Fundo
-│       └── botao_enviar.js     # Integração do Formulário de Contato
+│       └── botao_enviar.js     # Integração do Formulário de Contato via WhatsApp
 ├── README.md                   # Esta documentação
 └── .gitignore                  # Filtros de arquivos Git
 ```
