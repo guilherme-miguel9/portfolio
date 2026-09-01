@@ -126,3 +126,9 @@ Acesse no seu navegador: `http://localhost:8000`
 
 * **LinkedIn:** https://linkedin.com/in/guilherme-barros-55bb73286
 * **GitHub:** https://github.com/guilherme-miguel9
+
+---
+
+## Licença
+
+Este projeto está sob a licença MIT. Sinta-se à vontade para utilizar e adaptar para o seu próprio portfólio.
