@@ -1,238 +1,282 @@
 /**
  * ==============================================================================
- * 📝 PAINEL DE CONTEÚDO E DADOS DO PORTFÓLIO (dados.js)
+ * PAINEL DE CONTEÚDO DO PORTFÓLIO (dados.js)
  * ==============================================================================
- * 
- * 💡 COMO USAR:
- * Este é o único arquivo que você precisa abrir no VS Code para alterar:
- * - Seus textos, títulos e descrições.
- * - Suas fotos, imagens e banners.
- * - Suas métricas, competências e links de redes sociais.
- * - Adicionar, editar ou remover projetos.
- * 
- * Basta alterar o texto desejado entre as aspas "..." e salvar o arquivo (Ctrl + S)!
+ * Edite textos, métricas, projetos e e-mail neste arquivo.
  * ==============================================================================
  */
 
 const PORTFOLIO_DADOS = {
-
-  // ============================================================================
-  // 1. DADOS PESSOAIS & SEÇÃO PRINCIPAL (HERO)
-  // ============================================================================
+  // 1. PERFIL & HERO
   perfil: {
     nome: "Guilherme Miguel",
-    cargoBadge: "Engenheiro de Dados & Automação | Python & Inteligência Artificial",
-    tituloHero: "Olá, me chamo <br /><span class=\"highlight-name\">Guilherme Miguel.</span>",
-    subtitulo: "Desenvolvo soluções em Python para engenharia de dados, automação de processos e aplicações de Inteligência Artificial.",
-    descricao: "Especialista na construção de pipelines analíticos robustos em Python (Pandas, SQLAlchemy), cargas otimizadas em massa no PostgreSQL e automação de rotinas corporativas de alto volume, com sistemas RAG locais estruturados.",
-
-    // Caminho da sua foto de perfil
+    eyebrow: "Engenheiro de Dados & Automação",
+    titulo: "Guilherme Miguel.",
+    subtitulo:
+      "Projeto pipelines de dados resilientes, automações operacionais de alto volume e sistemas de IA local com Python e PostgreSQL.",
     fotoPerfil: "./view/images/foto-perfil.jpg",
-
-    // Botões principais de ação
     botoes: {
-      projetosTexto: "Ver Projetos",
+      projetosTexto: "Ver projetos",
       projetosLink: "#projetos",
-      contatoTexto: "Entre em Contato",
+      contatoTexto: "Entrar em contato",
       contatoLink: "#contato"
-    }
-  },
-
-  // ============================================================================
-  // 2. SEÇÃO SOBRE MIM & MÉTRICAS
-  // ============================================================================
-  sobre: {
-    tag: "Perfil Profissional",
-    titulo: "Sobre Mim",
-    subtitulo: "Trajetória e Abordagem Técnica",
-    paragrafos: [
-      "Com experiência direcionada ao desenvolvimento de soluções de dados e automação, atuo na concepção, construção e manutenção de pipelines analíticos, processamento de dados corporativos e integração de rotinas complexas.",
-      "Utilizo Python, bancos de dados relacionais e ferramentas de IA local, aplicando boas práticas de resiliência, validação de dados e controle transacional para otimizar processos e eliminar gargalos operacionais."
-    ],
-    // Destaques numéricos e métricas de impacto
+    },
     metricas: [
       {
-        numero: "+75.297",
-        descricao: "Registros e avaliações mensais processadas com coleta e análise diretamente do ERP SAP"
+        numero: "2M+",
+        descricao: "Registros mensais processados em pipelines Python, SQL e PostgreSQL"
+      },
+      {
+        numero: "75.297+",
+        descricao: "Registros e avaliações mensais auditados diretamente no ERP SAP"
       },
       {
         numero: "+35%",
-        descricao: "Ganho de eficiência operacional que obtivemos com dados obtidos pela automação do SAP"
-      },
-      {
-        numero: "2 Milhões de Registros mensais",
-        descricao: "Processados por meio de pipeline analítico em Python, SQL e PostgreSQL"
+        descricao: "Ganho de eficiência operacional na correção de não conformidades"
       }
     ]
   },
 
-  // ============================================================================
-  // 3. COMPETÊNCIAS & FERRAMENTAS
-  // ============================================================================
-  competencias: {
-    tag: "Especialidades",
-    titulo: "Competências & Ferramentas",
-    lista: [
-      {
-        icone: "database",
-        titulo: "Coleta & Banco de Dados",
-        descricao: "Modelagem relacional, otimização de consultas e ingestão de dados em larga escala.",
-        tags: ["PostgreSQL", "SQLAlchemy", "SAP Integration"]
-      },
-      {
-        icone: "etl",
-        titulo: "Processamento & ETL",
-        descricao: "Limpeza de dados, engenharia de atributos e tratamento de bases complexas ou incompletas.",
-        tags: ["Python", "Pandas", "NumPy", "Excel VBA"]
-      },
-      {
-        icone: "ml",
-        titulo: "Modelagem & Machine Learning",
-        descricao: "Desenvolvimento e validação cruzada de modelos preditivos, regressão e classificação.",
-        tags: ["Scikit-Learn", "Estatística", "Otimização", "Tuning"]
-      },
-      {
-        icone: "deploy",
-        titulo: "Deploy & Visualização",
-        descricao: "Construção de relatórios gerenciais e microsserviços.",
-        tags: ["Matplotlib", "Seaborn"]
-      }
+  // 2. SOBRE MIM
+  sobre: {
+    eyebrow: "Sobre",
+    titulo: "Engenharia orientada a dados reais e operação.",
+    paragrafos: [
+      "Atuo na concepção, construção e sustentação de pipelines analíticos, integrações entre planilhas, APIs e PostgreSQL, além de automações corporativas que eliminam gargalos operacionais em rotinas de campo e ERP.",
+      "Do Lakehouse em arquitetura Medalhão (dbt, Polars, MinIO e Docker) a robôs em Python, PySide6, SAP Scripting e sistemas de IA local (RAG e Visão Computacional), priorizo integridade de schema, performance de carga e previsibilidade em produção."
     ]
   },
 
-  // ============================================================================
-  // 4. ARQUITETURA & RESILIÊNCIA DE PIPELINES (Perguntas Técnicas)
-  // ============================================================================
-  arquitetura: {
-    tag: "Confiabilidade & Performance",
-    titulo: "Arquitetura & Resiliência de Pipelines",
-    subtitulo: "Decisões técnicas reais tomadas para resolver desafios de performance, integridade e escala no processamento de dados em produção:",
-    cards: [
-      {
-        tag: "01. Governança de Schema",
-        pergunta: "Como você valida os dados na entrada?",
-        resposta: "Defino um dicionário de tipagem forçada (<code>colunasarrumadas</code>) aplicado na leitura de cada planilha, garantindo que campos como código de contrato ou instalação não percam zeros à esquerda nem sejam convertidos incorretamente antes de chegar ao banco."
-      },
-      {
-        tag: "02. Performance de Carga",
-        pergunta: "Como você otimizou a carga no PostgreSQL?",
-        resposta: "Migrei o pipeline de <code>INSERT</code> linha a linha para o comando nativo <code>COPY</code> do PostgreSQL, que processa a carga como um único fluxo de dados em vez de milhares de instruções individuais — reduzindo drasticamente o tempo de carga em lotes grandes."
-      },
-      {
-        tag: "03. Regra de Negócio: Duplicidade",
-        pergunta: "Você trata registros duplicados?",
-        resposta: "Não removo duplicidades por padrão — no meu contexto operacional, múltiplos registros para a mesma referência são informação relevante e precisam ser preservados. Para dados que exigem atualização, aplico uma lógica de exclusão e nova inserção por período de data, evitando registros divergentes para a mesma janela de tempo."
-      },
-      {
-        tag: "04. Processamento em Lote",
-        pergunta: "Como processa arquivos grandes sem travar a interface?",
-        resposta: "Utilizo processamento assíncrono em segundo plano (multi-threading) nas aplicações desktop, permitindo validar e carregar dezenas de milhares de linhas sem bloquear a interface gráfica (PySide6) enquanto o usuário acompanha o progresso em tempo real."
-      },
-      {
-        tag: "05. Lição Aprendida: Rollback",
-        pergunta: "O que você faria diferente hoje?",
-        resposta: "Na lógica de exclusão e reinserção por data, uma falha no meio do processo apagou os registros das datas correspondentes antes da nova inserção ser concluída — como eu mantinha a origem em Excel (camada Bronze), não houve perda real, mas o incidente deixou clara a necessidade de <code>rollback</code> transacional explícito antes de qualquer exclusão. É a próxima melhoria técnica que estou implementando nos meus pipelines."
-      }
-    ]
-  },
-
-  // ============================================================================
-  // 5. PROJETOS EM DESTAQUE (Adicione, edite ou remova cards aqui!)
-  // ============================================================================
+  // 3. PROJETOS
   projetos: {
-    tag: "Portfólio Prático",
-    titulo: "Projetos em Destaque",
-    subtitulo: "Soluções completas que combinam engenharia de dados, modelagem analítica, inteligência artificial e automação de processos.",
-    lista: [
+    eyebrow: "Projetos",
+    titulo: "Trabalho selecionado.",
+    subtitulo:
+      "Sistemas em produção, pipelines de dados, automações com IA local e APIs abertas no GitHub.",
+    categorias: ["Todos", "Engenharia de Dados", "Automação & IA", "APIs & Backend"],
+    publicos: [
       {
-        titulo: "App de Integração & Sincronização SQL (Lumi)",
-        categoria: "Engenharia de Dados & ETL",
-        badgeOverlay: "Ingestão & Sincronização SQL",
+        titulo: "DataForge — Data Lakehouse Medallion",
+        categoria: "Engenharia de Dados",
+        imagem: "",
+        destaque: "Bronze · Silver · Gold + CI/CD",
+        descricao:
+          "Plataforma ponta a ponta com ingestão heterogênea (planilhas Excel de 47 colunas e API REST), detecção incremental por hash SHA-256, contratos Pydantic com quarentena (DLQ) no MinIO S3, processamento em Parquet com Polars e Data Warehouse Star Schema em dbt + PostgreSQL.",
+        tags: ["Python", "Polars", "dbt", "MinIO S3", "PostgreSQL"],
+        link: "https://github.com/guilherme-miguel9/projeto-dataforge"
+      },
+      {
+        titulo: "Lumi — Integração & Sincronização SQL",
+        categoria: "Engenharia de Dados",
         imagem: "./view/images/bd.png",
-        descricao: "Software desktop em Python para validação, limpeza e importação de planilhas Excel (<code>.xlsx</code>/<code>.xls</code>) para bancos PostgreSQL. Desenvolvido com PySide6 e processamento assíncrono em segundo plano (multi-threading), sem bloquear a interface, com carga otimizada via comando nativo <code>COPY</code>.",
-        tags: ["Python", "PostgreSQL", "Pandas", "PySide6", "Multi-threading"],
-        tipo: "github", // "github" (mostra link público) ou "privado" (mostra badge corporativo)
+        destaque: "Carga em lote via PostgreSQL COPY",
+        descricao:
+          "Aplicativo desktop em PySide6 (módulos OSB e OSP) para leitura em lote de pastas de planilhas Excel (.xlsx, .xlsm, .xls) com pandas e calamine, limpeza estrutural e carga massiva no PostgreSQL via comando nativo COPY em multi-threading sem travar a interface.",
+        tags: ["Python", "PySide6", "PostgreSQL", "Pandas", "Multi-threading"],
         link: "https://github.com/guilherme-miguel9/APP-INTEGRACAO-BD"
       },
       {
         titulo: "Bot Auditor de Registros Operacionais",
-        categoria: "Auditoria & Validação Operacional",
-        badgeOverlay: "Validação & Auditoria de Dados",
+        categoria: "Automação & IA",
         imagem: "./view/images/bot-aud.png",
-        descricao: "Automatiza a validação e auditoria de dezenas de milhares de registros operacionais de campo. O motor aplica validação antecipada de schema e regras de negócio, categorizando comentários em 8 classificações de conformidade e isolando inconsistências de forma automatizada. Reduz o tempo de auditoria de ~9 horas (18 lotes, ~30 min cada manualmente) para 2 a 5 minutos — um ganho de mais de 100x.",
-        tags: ["Python", "Pandas", "Validação de Dados", "Regras de Negócio", "ETL"],
-        tipo: "github",
+        destaque: "De ~9h para 2–5 min (>100× mais rápido)",
+        descricao:
+          "Motor automatizado de auditoria de justificativas de campo que aplica validação de schema e regras de negócio sobre dezenas de milhares de registros, categorizando ocorrências em 8 classificações operacionais e isolando desvios.",
+        tags: ["Python", "Pandas", "Auditoria", "ETL"],
         link: "https://github.com/guilherme-miguel9/Bot-Auditor"
       },
       {
-        titulo: "Automação de Auditoria & Monitoramento SAP",
-        categoria: "Automação RPA & ERP SAP",
-        badgeOverlay: "RPA & Monitoramento SAP",
-        imagem: "./view/images/bot-sap.webp",
-        descricao: "Robô de automação (RPA) que coleta e analisa dados operacionais diretamente do ERP SAP. Processando um volume superior a <strong>75.297 avaliações e registros mensais</strong> de forma automatizada, identifica desvios e notifica as equipes para correção (<24h tempo hábil), gerando <strong>+35% de ganho de eficiência operacional, medido para correções de incoformidades.",
-        tags: ["VBA Excel", "SAP Scripting", "RPA / Automação", "Tempo Real"],
-        tipo: "privado",
-        textoPrivado: "Ambiente Corporativo Privado"
+        titulo: "RAG-PDF — Assistente Operacional Local",
+        categoria: "Automação & IA",
+        imagem: "",
+        destaque: "100% local com citação de páginas",
+        descricao:
+          "Sistema RAG em Clean Architecture para consulta a POPs e manuais técnicos corporativos, com extração estruturada via Docling, indexação vetorial no ChromaDB, reranking Cross-Encoder e LLM local via LM Studio em interface Streamlit.",
+        tags: ["LangChain", "Docling", "ChromaDB", "Cross-Encoder", "Streamlit"],
+        link: "https://github.com/guilherme-miguel9/RAG-PDF"
       },
       {
-        titulo: "RAG-PDF: Assistente Operacional Inteligente",
-        categoria: "Inteligência Artificial & LLMs",
-        badgeOverlay: "RAG 100% Local (LangChain)",
-        imagem: "", // Deixe vazio "" para usar padrão ou coloque o caminho da imagem ex: "./view/images/rag.png"
-        descricao: "Sistema RAG executado 100% local para consulta de POPs e manuais técnicos, com respostas fundamentadas nas fontes recuperadas e referência às páginas utilizadas. Utiliza LangChain, Docling, ChromaDB e reranking com Cross-Encoder, com interface em Streamlit.",
-        tags: ["LangChain", "ChromaDB", "Docling", "Streamlit", "Reranker"],
-        tipo: "github",
-        link: "https://github.com/guilherme-miguel9/RAG-PDF"
+        titulo: "Automação de Cobranças por Rotas",
+        categoria: "Automação & IA",
+        imagem: "",
+        destaque: "Google Sheets → WhatsApp & SMTP",
+        descricao:
+          "Orquestrador em Python que lê pendências e hierarquias de rotas via Google Sheets API (gspread), dispara notificações segmentadas pelo WhatsApp (OpenClaw Gateway API), envia consolidados por e-mail (SMTP) e gera CSV de auditoria.",
+        tags: ["Python", "Google Sheets API", "WhatsApp API", "SMTP"],
+        link: "https://github.com/guilherme-miguel9/Automacao-Cobranca"
+      },
+      {
+        titulo: "RPA de Análise de Fotos com VLM Local",
+        categoria: "Automação & IA",
+        imagem: "",
+        destaque: "Visão computacional em interfaces restritas",
+        descricao:
+          "Automação RPA projetada para interfaces restritas (como SAP GUI via área de trabalho remota) com captura dinâmica de recortes de tela, navegação automatizada por teclado e classificação de imagens com Modelos de Visão (VLMs) via LM Studio.",
+        tags: ["Python", "RPA", "Visão Computacional", "LM Studio"],
+        link: "https://github.com/guilherme-miguel9/Automacao-analise-de-fotos"
+      },
+      {
+        titulo: "Bot Telegram Routheon",
+        categoria: "APIs & Backend",
+        imagem: "",
+        destaque: "Assíncrono · Clean Architecture · LGPD",
+        descricao:
+          "Sistema de consulta automatizada de processos via Telegram construído em camadas desacopladas com pool assíncrono em PostgreSQL (SQLAlchemy 2.0), configurações tipadas (pydantic-settings) e consultas parametrizadas alinhadas à LGPD.",
+        tags: ["Python", "SQLAlchemy 2.0", "PostgreSQL", "Pydantic", "Async"],
+        link: "https://github.com/guilherme-miguel9/Bot-Telegram-Routheon"
+      },
+      {
+        titulo: "API Route — Roteirização de Mapas",
+        categoria: "APIs & Backend",
+        imagem: "",
+        destaque: "FastAPI + OSRM com Swagger",
+        descricao:
+          "API REST que recebe coordenadas de latitude e longitude para calcular a melhor rota viária via OSRM, retornando distância total e estimativa de conclusão, com documentação interativa gerada no FastAPI.",
+        tags: ["Python", "FastAPI", "OSRM", "Swagger"],
+        link: "https://github.com/guilherme-miguel9/api_route"
+      },
+      {
+        titulo: "API de Reservas & Propriedades (Seazone)",
+        categoria: "APIs & Backend",
+        imagem: "",
+        destaque: "REST v1 · Docker · PyTest",
+        descricao:
+          "Backend desenvolvido para desafio técnico da Seazone com endpoints versionados de cadastro de propriedades, consulta de disponibilidade, reservas e cancelamento, containerizado com Docker Compose e coberto por testes automatizados em PyTest.",
+        tags: ["Python", "FastAPI", "Docker", "PyTest"],
+        link: "https://github.com/guilherme-miguel9/desafio-backend-seazone"
+      },
+      {
+        titulo: "Radar Olist — Análise de E-commerce",
+        categoria: "Engenharia de Dados",
+        imagem: "",
+        destaque: "Banco relacional versionado com Alembic",
+        descricao:
+          "Projeto de engenharia e análise de performance de vendas em e-commerce (dataset Olist) estruturado em Python com migrações de schema gerenciadas via Alembic.",
+        tags: ["Python", "SQL", "Alembic", "Analytics"],
+        link: "https://github.com/guilherme-miguel9/Radar-Olist"
+      }
+    ],
+    // Projetos privados/corporativos: bloco minimalista e sem links externos
+    corporativos: {
+      titulo: "Projetos corporativos",
+      nota: "Soluções desenvolvidas em ambiente privado. Sem acesso público por restrição corporativa.",
+      lista: [
+        {
+          titulo: "Auditoria & Monitoramento SAP",
+          contexto: "RPA Corporativo · Acesso restrito",
+          descricao:
+            "Automação em VBA Excel e SAP Scripting que coleta e analisa mais de 75.297 registros e avaliações mensais diretamente do ERP SAP, sinalizando desvios em menos de 24h e gerando +35% de ganho de eficiência operacional na correção de não conformidades."
+        }
+      ]
+    }
+  },
+
+  // 4. ARQUITETURA & DECISÕES TÉCNICAS
+  arquitetura: {
+    eyebrow: "Arquitetura",
+    titulo: "Decisões técnicas em produção.",
+    subtitulo:
+      "Problemas reais enfrentados em pipelines e automações — e como foram resolvidos.",
+    cards: [
+      {
+        tag: "01",
+        subtitulo: "Governança de Schema",
+        pergunta: "Como você valida os dados na entrada?",
+        resposta:
+          "Defino um dicionário de tipagem forçada (<code>colunasarrumadas</code>) aplicado na leitura de cada planilha, garantindo que campos como código de contrato ou instalação não percam zeros à esquerda nem sejam convertidos incorretamente antes de chegar ao banco."
+      },
+      {
+        tag: "02",
+        subtitulo: "Performance de Carga",
+        pergunta: "Como você otimizou a carga no PostgreSQL?",
+        resposta:
+          "Migrei o pipeline de <code>INSERT</code> linha a linha para o comando nativo <code>COPY</code> do PostgreSQL, que processa a carga como um único fluxo de dados em vez de milhares de instruções individuais — reduzindo drasticamente o tempo de carga em lotes grandes."
+      },
+      {
+        tag: "03",
+        subtitulo: "Regra de Negócio: Duplicidade",
+        pergunta: "Você trata registros duplicados?",
+        resposta:
+          "Não removo duplicidades por padrão — no meu contexto operacional, múltiplos registros para a mesma referência são informação relevante e precisam ser preservados. Para dados que exigem atualização, aplico uma lógica de exclusão e nova inserção por período de data, evitando registros divergentes para a mesma janela de tempo."
+      },
+      {
+        tag: "04",
+        subtitulo: "Processamento em Lote",
+        pergunta: "Como processa arquivos grandes sem travar a interface?",
+        resposta:
+          "Utilizo processamento assíncrono em segundo plano (multi-threading) nas aplicações desktop, permitindo validar e carregar dezenas de milhares de linhas sem bloquear a interface gráfica (PySide6) enquanto o usuário acompanha o progresso em tempo real."
+      },
+      {
+        tag: "05",
+        subtitulo: "Lição Aprendida: Rollback",
+        pergunta: "O que você faria diferente hoje?",
+        resposta:
+          "Na lógica de exclusão e reinserção por data, uma falha no meio do processo apagou os registros das datas correspondentes antes da nova inserção ser concluída — como eu mantinha a origem em Excel (camada Bronze), não houve perda real, mas o incidente deixou clara a necessidade de <code>rollback</code> transacional explícito antes de qualquer exclusão. É a próxima melhoria técnica que estou implementando nos meus pipelines."
       }
     ]
   },
 
-  // ============================================================================
-  // 6. SIMULADOR DE MACHINE LEARNING (Textos)
-  // ============================================================================
-  simulador: {
-    tag: "Demonstração Interativa",
-    titulo: "Simulador Interativo de Machine Learning",
-    subtitulo: "Ajuste os hiperparâmetros abaixo para simular visualmente no navegador a dinâmica matemática de convergência e curvas de aprendizado de diferentes algoritmos."
+  // 5. COMPETÊNCIAS & STACK
+  competencias: {
+    eyebrow: "Competências",
+    titulo: "Stack e áreas de atuação.",
+    lista: [
+      {
+        titulo: "Engenharia de Dados & Lakehouse",
+        descricao:
+          "Ingestão incremental, modelagem dimensional, qualidade de dados e carga em massa.",
+        tags: ["Python", "Polars", "Pandas", "PostgreSQL", "dbt", "MinIO", "Parquet", "Alembic"]
+      },
+      {
+        titulo: "Automação & RPA",
+        descricao:
+          "Automação de rotinas corporativas, integração com ERP e aplicações desktop responsivas.",
+        tags: ["SAP Scripting", "VBA Excel", "PySide6", "Multi-threading", "Google Sheets API"]
+      },
+      {
+        titulo: "IA Aplicada & LLMs Locais",
+        descricao:
+          "Busca semântica fundamentada em documentos, visão computacional e agentes operacionais.",
+        tags: ["LangChain", "RAG", "ChromaDB", "Docling", "Cross-Encoder", "LM Studio", "VLMs"]
+      },
+      {
+        titulo: "APIs, Qualidade & Infra",
+        descricao:
+          "Serviços REST assíncronos, validação de contratos, testes automatizados e empacotamento.",
+        tags: ["FastAPI", "SQLAlchemy 2.0", "Pydantic", "Docker", "PyTest", "Ruff", "GitHub Actions"]
+      }
+    ]
   },
 
-  // ============================================================================
-  // 7. CONTATO & REDES SOCIAIS
-  // ============================================================================
+  // 6. CONTATO
   contato: {
-    tag: "Fale Comigo",
-    titulo: "Conecte-se e Vamos Conversar",
-    subtitulo: "Estou à disposição para novos desafios, projetos em Engenharia de Dados, Análise de Dados e oportunidades profissionais.",
+    eyebrow: "Contato",
+    titulo: "Vamos conversar.",
+    subtitulo:
+      "Disponível para oportunidades em Engenharia de Dados, Automação e projetos sob demanda.",
 
-    // Configurações do WhatsApp (deixe vazio se não quiser colocar o número agora)
-    //whatsapp: {
-    //numeroTelefone: "", // Exemplo: "5511999999999"
-    // tituloFormulario: "Envie uma mensagem direta",
-    //textoBotao: "Enviar pelo WhatsApp"
-    //},
+    // Altere seu e-mail aqui se desejar usar outro endereço
+    email: "guicaruaru@gmail.com",
 
-    // Links de Redes Sociais
     redes: [
       {
         tipo: "linkedin",
-        titulo: "LinkedIn Profissional",
-        subtitulo: "Conecte-se comigo no LinkedIn",
+        titulo: "LinkedIn",
+        subtitulo: "linkedin.com/in/guilherme-miguel-dados",
         link: "https://linkedin.com/in/guilherme-miguel-dados"
       },
       {
         tipo: "github",
-        titulo: "Repositório GitHub",
-        subtitulo: "Confira meus códigos e contribuições",
+        titulo: "GitHub",
+        subtitulo: "github.com/guilherme-miguel9",
         link: "https://github.com/guilherme-miguel9"
       }
     ]
   },
 
-  // ============================================================================
-  // 8. RODAPÉ
-  // ============================================================================
+  // 7. RODAPÉ
   rodape: {
-    copyright: "© 2026 Guilherme Miguel. Todos os direitos reservados.",
-    nota: "Desenvolvido para demonstrar meus projetos pessoais/profissionais."
+    copyright: "© 2026 Guilherme Miguel.",
+    nota: "Engenharia de Dados & Automação."
   }
 };

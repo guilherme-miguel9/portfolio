@@ -3,314 +3,304 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Guilherme Miguel | Engenheiro de Dados & Automação (Python & IA)</title>
-    
-    <!-- SEO Meta Tags -->
-    <meta name="description" content="Portfólio de Guilherme Miguel — Engenheiro de Dados & Automação com foco em Python, Inteligência Artificial, resiliência de pipelines e otimização de processos." />
-    <meta name="keywords" content="Engenheiro de Dados, Automação, Python, Inteligência Artificial, RAG, PostgreSQL, Pandas, RPA, SAP, Portfólio" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" content="#f5f5f7" id="meta-theme-color" />
+    <title>Guilherme Miguel | Engenheiro de Dados &amp; Automação</title>
+
+    <!-- SEO & Social -->
+    <meta
+      name="description"
+      content="Portfólio de Guilherme Miguel — Engenheiro de Dados & Automação com foco em Python, PostgreSQL, arquitetura Lakehouse, RPA e sistemas de IA local."
+    />
+    <meta
+      name="keywords"
+      content="Engenheiro de Dados, Automação, Python, PostgreSQL, dbt, Polars, RAG, RPA, SAP, FastAPI, Portfólio"
+    />
     <meta name="author" content="Guilherme Miguel" />
 
-    <!-- Open Graph / LinkedIn / Social Media Meta Tags -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://guilherme-miguel9.github.io/portfolio/" />
-    <meta property="og:title" content="Guilherme Miguel | Engenheiro de Dados & Automação (Python & IA)" />
-    <meta property="og:description" content="Engenharia de dados resiliente, pipelines tolerantes a falhas, automação de processos SAP (+35% assertividade) e soluções com IA local." />
-    <meta property="og:image" content="https://guilherme-miguel9.github.io/portfolio/view/images/banner_port.png" />
-    
+    <meta property="og:title" content="Guilherme Miguel | Engenheiro de Dados & Automação" />
+    <meta
+      property="og:description"
+      content="Pipelines de dados resilientes, automações operacionais de alto volume e sistemas de IA local com Python e PostgreSQL."
+    />
+    <meta property="og:image" content="https://guilherme-miguel9.github.io/portfolio/view/images/foto-perfil.jpg" />
+
     <!-- Twitter Cards -->
     <meta property="twitter:card" content="summary_large_image" />
     <meta property="twitter:url" content="https://guilherme-miguel9.github.io/portfolio/" />
-    <meta property="twitter:title" content="Guilherme Miguel | Engenheiro de Dados & Automação (Python & IA)" />
-    <meta property="twitter:description" content="Engenharia de dados resiliente, pipelines tolerantes a falhas, automação de processos SAP (+35% assertividade) e soluções com IA local." />
-    <meta property="twitter:image" content="https://guilherme-miguel9.github.io/portfolio/view/images/banner_port.png" />
+    <meta property="twitter:title" content="Guilherme Miguel | Engenheiro de Dados & Automação" />
+    <meta
+      property="twitter:description"
+      content="Pipelines de dados resilientes, automações operacionais de alto volume e sistemas de IA local com Python e PostgreSQL."
+    />
+    <meta property="twitter:image" content="https://guilherme-miguel9.github.io/portfolio/view/images/foto-perfil.jpg" />
 
-    <!-- Google Fonts: Outfit (Títulos), Inter (Texto), Fira Code (Dados/Métricas) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <!-- Inicialização do tema antes da renderização para evitar flash -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('portfolio-theme');
+          if (saved === 'light' || saved === 'dark') {
+            document.documentElement.dataset.theme = saved;
+          }
+          var isDark =
+            saved === 'dark' ||
+            (!saved && window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+          var meta = document.getElementById('meta-theme-color');
+          if (meta) meta.setAttribute('content', isDark ? '#000000' : '#f5f5f7');
+        } catch (e) {}
+      })();
+    </script>
+
     <link rel="stylesheet" href="./view/styles.css" />
     <link rel="icon" type="image/png" href="./view/images/portfolio.png" />
   </head>
   <body>
-    <!-- Fundo de Partículas sutil e animado -->
-    <canvas id="network-canvas" class="particulas"></canvas>
+    <a href="#conteudo-principal" class="skip-link">Pular para o conteúdo principal</a>
 
-    <!-- Barra de Navegação -->
-    <header class="navbar">
-      <div class="container nav-container">
-        <a href="#inicio" class="logo">GM<span>.dados</span></a>
-        
-        <nav class="nav-menu">
-          <ul class="nav-links">
-            <li><a href="#inicio" class="nav-link">Início</a></li>
-            <li><a href="#sobre" class="nav-link">Sobre</a></li>
-            <li><a href="#habilidades" class="nav-link">Competências</a></li>
-            <li><a href="#arquitetura" class="nav-link">Arquitetura</a></li>
-            <li><a href="#projetos" class="nav-link">Projetos</a></li>
-            <li><a href="#laboratorio" class="nav-link">Simulador ML</a></li>
-            <li><a href="#contato" class="nav-link btn-nav-contato">Contato</a></li>
-          </ul>
+    <!-- Navegação sticky com Liquid Glass -->
+    <header class="navbar" id="navbar">
+      <div class="nav-inner">
+        <a href="#inicio" class="wordmark">Guilherme Miguel</a>
+
+        <nav class="nav-desktop" aria-label="Navegação principal">
+          <a href="#sobre" class="nav-link">Sobre</a>
+          <a href="#projetos" class="nav-link">Projetos</a>
+          <a href="#arquitetura" class="nav-link">Arquitetura</a>
+          <a href="#competencias" class="nav-link">Competências</a>
+          <a href="#contato" class="nav-link">Contato</a>
         </nav>
+
+        <div class="nav-actions">
+          <button
+            type="button"
+            id="theme-toggle"
+            class="icon-btn"
+            aria-label="Alternar tema claro e escuro"
+            title="Alternar tema"
+          >
+            <svg
+              class="ic ic-sun"
+              viewBox="0 0 24 24"
+              width="20"
+              height="20"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+            </svg>
+            <svg
+              class="ic ic-moon"
+              viewBox="0 0 24 24"
+              width="20"
+              height="20"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+            </svg>
+          </button>
+
+          <button
+            type="button"
+            id="menu-toggle"
+            class="icon-btn menu-btn"
+            aria-label="Abrir menu de navegação"
+            aria-expanded="false"
+            aria-controls="mobile-nav"
+          >
+            <svg
+              class="ic ic-menu"
+              viewBox="0 0 24 24"
+              width="20"
+              height="20"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M4 7h16M4 12h16M4 17h16"></path>
+            </svg>
+            <svg
+              class="ic ic-close"
+              viewBox="0 0 24 24"
+              width="20"
+              height="20"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.75"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M18 6 6 18M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
       </div>
     </header>
 
-    <!-- Hero Section (Apresentação Principal) -->
-    <section id="inicio" class="hero-section">
-      <div class="container hero-container">
-        <div class="hero-content">
-          <div class="hero-badge">
-            <span class="dot-pulse"></span>
-            <span id="hero-badge-texto">Engenheiro de Dados & Automação | Python & Inteligência Artificial</span>
-          </div>
-          
-          <h1 id="hero-titulo" class="hero-title">
-            Olá, me chamo <br /><span class="highlight-name">Guilherme Miguel.</span>
-          </h1>
-          
-          <p id="hero-subtitulo" class="hero-subtitle">
-            Desenvolvo soluções em Python para engenharia de dados, automação de processos e aplicações de Inteligência Artificial.
-          </p>
-          
-          <p id="hero-descricao" class="hero-description">
-            Especialista na construção de pipelines analíticos robustos em Python (Pandas, SQLAlchemy), controle transacional em bancos PostgreSQL, automação de rotinas corporativas de alto volume e sistemas RAG locais estruturados.
-          </p>
+    <!-- Sheet móvel com Liquid Glass -->
+    <div id="mobile-nav" class="mobile-nav" aria-hidden="true">
+      <nav class="mobile-nav-links" aria-label="Navegação móvel">
+        <a href="#sobre" class="mobile-nav-link">Sobre</a>
+        <a href="#projetos" class="mobile-nav-link">Projetos</a>
+        <a href="#arquitetura" class="mobile-nav-link">Arquitetura</a>
+        <a href="#competencias" class="mobile-nav-link">Competências</a>
+        <a href="#contato" class="mobile-nav-link">Contato</a>
+      </nav>
+    </div>
 
-          <div class="hero-actions">
-            <a id="hero-btn-projetos" href="#projetos" class="btn btn-primary">Ver Projetos</a>
-            <a id="hero-btn-contato" href="#contato" class="btn btn-outline">Entre em Contato</a>
-          </div>
-        </div>
+    <main id="conteudo-principal">
+      <!-- Hero -->
+      <section id="inicio" class="hero-section">
+        <div class="container">
+          <div class="hero-grid">
+            <div class="hero-copy">
+              <p id="hero-eyebrow" class="eyebrow">Engenheiro de Dados &amp; Automação</p>
+              <h1 id="hero-titulo" class="hero-title">Guilherme Miguel.</h1>
+              <p id="hero-subtitulo" class="hero-lede">
+                Projeto pipelines de dados resilientes, automações operacionais de alto volume e sistemas de IA local com Python e PostgreSQL.
+              </p>
 
-        <div class="hero-image-wrapper">
-          <div class="profile-card">
-            <img id="hero-foto" src="./view/images/foto-perfil.jpg" alt="Foto de Guilherme Miguel" class="profile-img" />
-            <div class="profile-glow"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Seção Sobre Mim -->
-    <section id="sobre" class="section sobre-section">
-      <div class="container">
-        <div class="section-header">
-          <span id="sobre-tag" class="section-tag">Perfil Profissional</span>
-          <h2 id="sobre-titulo" class="section-title">Sobre Mim</h2>
-          <div class="section-divider"></div>
-        </div>
-
-        <div class="sobre-card">
-          <div class="sobre-text">
-            <h3 id="sobre-subtitulo">Trajetória e Abordagem Técnica</h3>
-            <div id="sobre-textos">
-              <!-- Conteúdo renderizado dinamicamente via dados.js -->
-            </div>
-          </div>
-
-          <div id="sobre-metricas" class="sobre-stats-grid">
-            <!-- Métricas renderizadas dinamicamente via dados.js -->
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Seção de Competências (Grid Limpo) -->
-    <section id="habilidades" class="section skills-section">
-      <div class="container">
-        <div class="section-header">
-          <span id="competencias-tag" class="section-tag">Especialidades</span>
-          <h2 id="competencias-titulo" class="section-title">Competências & Ferramentas</h2>
-          <div class="section-divider"></div>
-        </div>
-
-        <div id="competencias-grid" class="skills-grid">
-          <!-- Cards renderizados dinamicamente via dados.js -->
-        </div>
-      </div>
-    </section>
-
-    <!-- Seção de Arquitetura & Confiabilidade de Pipelines -->
-    <section id="arquitetura" class="section arch-section">
-      <div class="container">
-        <div class="section-header">
-          <span id="arquitetura-tag" class="section-tag">Confiabilidade & ACID</span>
-          <h2 id="arquitetura-titulo" class="section-title">Arquitetura & Resiliência de Pipelines</h2>
-          <div class="section-divider"></div>
-          <p id="arquitetura-subtitulo" class="section-subtitle">
-            Como soluciono os desafios críticos de integridade, escalabilidade e observabilidade no processamento e automação de dados em produção:
-          </p>
-        </div>
-
-        <div id="arquitetura-grid" class="arch-grid">
-          <!-- Cards de Resiliência renderizados dinamicamente via dados.js -->
-        </div>
-      </div>
-    </section>
-
-    <!-- Seção de Projetos em Destaque -->
-    <section id="projetos" class="section projects-section">
-      <div class="container">
-        <div class="section-header">
-          <span id="projetos-tag" class="section-tag">Portfólio Prático</span>
-          <h2 id="projetos-titulo" class="section-title">Projetos em Destaque</h2>
-          <div class="section-divider"></div>
-          <p id="projetos-subtitulo" class="section-subtitle">
-            Soluções completas que combinam engenharia de dados, modelagem analítica, inteligência artificial e automação de processos.
-          </p>
-        </div>
-
-        <div id="projetos-grid" class="projects-grid">
-          <!-- Cards de Projetos renderizados dinamicamente via dados.js -->
-        </div>
-      </div>
-    </section>
-
-    <!-- Seção Laboratório / Simulador de Machine Learning -->
-    <section id="laboratorio" class="section lab-section">
-      <div class="container">
-        <div class="section-header">
-          <span id="simulador-tag" class="section-tag">Demonstração Interativa</span>
-          <h2 id="simulador-titulo" class="section-title">Simulador Interativo de Machine Learning</h2>
-          <div class="section-divider"></div>
-          <p id="simulador-subtitulo" class="section-subtitle">
-            Ajuste os hiperparâmetros abaixo para simular visualmente no navegador a dinâmica matemática de convergência e curvas de aprendizado de diferentes algoritmos.
-          </p>
-        </div>
-
-        <div class="lab-container">
-          <div class="lab-controls">
-            <h3 class="lab-panel-title">Parâmetros de Treinamento</h3>
-            
-            <div class="control-group">
-              <label for="model-type">Algoritmo de Aprendizado</label>
-              <select id="model-type" class="control-select">
-                <option value="neural_network">Rede Neural Multicamadas (MLP)</option>
-                <option value="random_forest">Classificador Random Forest</option>
-                <option value="linear_regression">Regressão Linear (Gradiente Descendente)</option>
-              </select>
-            </div>
-
-            <div class="control-row">
-              <div class="control-group">
-                <label for="learning-rate">Taxa de Aprendizado (α)</label>
-                <select id="learning-rate" class="control-select">
-                  <option value="0.001">0.001 (Estável)</option>
-                  <option value="0.01" selected>0.01 (Recomendado)</option>
-                  <option value="0.1">0.1 (Rápido)</option>
-                  <option value="0.5">0.5 (Agressivo)</option>
-                </select>
-              </div>
-
-              <div class="control-group">
-                <label for="epochs">Épocas de Treino</label>
-                <select id="epochs" class="control-select">
-                  <option value="50">50 Épocas</option>
-                  <option value="100" selected>100 Épocas</option>
-                  <option value="150">150 Épocas</option>
-                  <option value="200">200 Épocas</option>
-                </select>
+              <div class="hero-actions">
+                <a id="hero-btn-projetos" href="#projetos" class="btn btn-primary">Ver projetos</a>
+                <a id="hero-btn-contato" href="#contato" class="btn btn-secondary">Entrar em contato</a>
               </div>
             </div>
 
-            <div class="control-group">
-              <div class="slider-header">
-                <label for="noise-level">Ruído Aleatório nos Dados</label>
-                <span id="noise-val" class="slider-value">15%</span>
+            <div class="hero-portrait-wrap">
+              <div class="hero-portrait-frame">
+                <img
+                  id="hero-foto"
+                  src="./view/images/foto-perfil.jpg"
+                  alt="Foto de Guilherme Miguel"
+                  class="hero-portrait"
+                />
               </div>
-              <input type="range" id="noise-level" class="control-slider" min="5" max="30" value="15" />
             </div>
-
-            <button id="btn-train" class="btn btn-train-action">
-              <span>Iniciar Treinamento do Modelo</span>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-            </button>
           </div>
 
-          <div class="lab-monitor">
-            <div class="monitor-header">
-              <div class="status-indicator">
-                <span class="status-dot idle" id="status-ponto"></span>
-                <span id="status-texto" class="status-text">Pronto para treinar</span>
-              </div>
-              <div class="epoch-counter" id="epoch-counter">Época: 0/100</div>
-            </div>
-
-            <div class="metrics-grid">
-              <div class="metric-box">
-                <span class="metric-label">Perda (Loss)</span>
-                <span class="metric-value" id="val-loss">1.5420</span>
-              </div>
-              <div class="metric-box">
-                <span class="metric-label">Acurácia (Accuracy)</span>
-                <span class="metric-value highlight-cyan" id="val-accuracy">35.4%</span>
-              </div>
-            </div>
-
-            <div class="chart-wrapper">
-              <canvas id="loss-chart"></canvas>
-            </div>
+          <!-- Painel unificado de métricas -->
+          <div id="hero-metricas" class="panel metrics-panel" aria-label="Indicadores de impacto">
+            <!-- Renderizado dinamicamente via dados.js -->
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Seção de Contato -->
-    <section id="contato" class="section contact-section">
-      <div class="container">
-        <div class="section-header">
-          <span id="contato-tag" class="section-tag">Fale Comigo</span>
-          <h2 id="contato-titulo" class="section-title">Conecte-se e Vamos Conversar</h2>
-          <div class="section-divider"></div>
-          <p id="contato-subtitulo" class="section-subtitle">
-            Estou à disposição para novos desafios, projetos em Ciência de Dados e oportunidades profissionais.
-          </p>
+      <!-- Sobre -->
+      <section id="sobre" class="section">
+        <div class="container reading-col">
+          <header class="section-header">
+            <p id="sobre-eyebrow" class="eyebrow">Sobre</p>
+            <h2 id="sobre-titulo" class="section-title">Engenharia orientada a dados reais e operação.</h2>
+          </header>
+          <div id="sobre-textos" class="prose">
+            <!-- Renderizado dinamicamente via dados.js -->
+          </div>
         </div>
+      </section>
 
-        <div class="contact-grid">
-          
-          <div class="contact-form-box">
-            <h3 id="contato-form-titulo">Envie uma mensagem direta</h3>
-            <form id="formulario" class="contact-form" onsubmit="enviarMensagem(event)">
-              <div class="form-group">
-                <label for="nome">Seu Nome</label>
-                <input type="text" id="nome" class="form-input" placeholder="Digite seu nome ou empresa" required />
-              </div>
+      <!-- Projetos -->
+      <section id="projetos" class="section">
+        <div class="container">
+          <div class="section-head-row">
+            <header class="section-header">
+              <p id="projetos-eyebrow" class="eyebrow">Projetos</p>
+              <h2 id="projetos-titulo" class="section-title">Trabalho selecionado.</h2>
+              <p id="projetos-subtitulo" class="section-lede">
+                Sistemas em produção, pipelines de dados, automações com IA local e APIs abertas no GitHub.
+              </p>
+            </header>
 
-              <div class="form-group">
-                <label for="mensagem">Sua Mensagem</label>
-                <textarea id="mensagem" class="form-input form-textarea" rows="4" placeholder="Como posso te ajudar?" required></textarea>
-              </div>
-
-              <button type="submit" class="btn btn-primary btn-full">
-                <span id="contato-btn-texto">Enviar pelo WhatsApp</span>
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-              </button>
-            </form>
+            <div id="projetos-filtro" class="segmented" role="tablist" aria-label="Filtrar projetos por categoria">
+              <!-- Renderizado dinamicamente via dados.js -->
+            </div>
           </div>
 
-          <div id="contato-redes-box" class="contact-links-box">
-            <!-- Redes sociais renderizadas dinamicamente via dados.js -->
+          <div id="projetos-grid" class="projects-grid">
+            <!-- Projetos públicos renderizados dinamicamente via dados.js -->
           </div>
 
+          <!-- Bloco minimalista para projetos corporativos/privados -->
+          <div id="projetos-corporativos" class="corporate-block">
+            <!-- Renderizado dinamicamente via dados.js -->
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+      <!-- Arquitetura -->
+      <section id="arquitetura" class="section">
+        <div class="container">
+          <header class="section-header">
+            <p id="arquitetura-eyebrow" class="eyebrow">Arquitetura</p>
+            <h2 id="arquitetura-titulo" class="section-title">Decisões técnicas em produção.</h2>
+            <p id="arquitetura-subtitulo" class="section-lede">
+              Problemas reais enfrentados em pipelines e automações — e como foram resolvidos.
+            </p>
+          </header>
+
+          <div id="arquitetura-lista" class="panel arch-panel">
+            <!-- Renderizado dinamicamente via dados.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Competências -->
+      <section id="competencias" class="section">
+        <div class="container">
+          <header class="section-header">
+            <p id="competencias-eyebrow" class="eyebrow">Competências</p>
+            <h2 id="competencias-titulo" class="section-title">Stack e áreas de atuação.</h2>
+          </header>
+
+          <div id="competencias-grid" class="panel skills-panel">
+            <!-- Renderizado dinamicamente via dados.js -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Contato -->
+      <section id="contato" class="section section-last">
+        <div class="container">
+          <header class="section-header">
+            <p id="contato-eyebrow" class="eyebrow">Contato</p>
+            <h2 id="contato-titulo" class="section-title">Vamos conversar.</h2>
+            <p id="contato-subtitulo" class="section-lede">
+              Disponível para oportunidades em Engenharia de Dados, Automação e projetos sob demanda.
+            </p>
+          </header>
+
+          <div id="contato-canais" class="panel contact-channels-panel">
+            <!-- LinkedIn, GitHub e E-mail renderizados dinamicamente -->
+          </div>
+        </div>
+      </section>
+    </main>
 
     <!-- Rodapé -->
     <footer class="footer">
-      <div class="container footer-container">
-        <p id="footer-copyright">&copy; 2026 Guilherme Miguel. Todos os direitos reservados.</p>
-        <p id="footer-nota" class="footer-note">Desenvolvido com foco em alta performance, UX e Ciência de Dados.</p>
+      <div class="container footer-inner">
+        <p id="footer-copyright">© 2026 Guilherme Miguel.</p>
+        <p id="footer-nota" class="footer-note">Engenharia de Dados &amp; Automação.</p>
       </div>
     </footer>
 
-    <!-- Scripts de Dados e Renderização Dinâmica -->
     <script src="./model/dados.js"></script>
     <script src="./model/render.js"></script>
-
-    <!-- Scripts Funcionais Interativos -->
-    <script src="./model/playground.js"></script>
-    <script src="./model/botao_enviar.js"></script>
   </body>
 </html>

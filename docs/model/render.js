@@ -1,303 +1,481 @@
 /**
  * ==============================================================================
- * 🚀 RENDERIZADOR AUTOMÁTICO DO PORTFÓLIO (render.js)
- * ==============================================================================
- * Este script lê todos os dados de 'PORTFOLIO_DADOS' (definidos em dados.js)
- * e injeta dinamicamente nas seções do HTML.
+ * RENDERIZADOR DO PORTFÓLIO & CONTROLE DE TEMA (render.js)
  * ==============================================================================
  */
 
 (function () {
-  'use strict';
+  "use strict";
+
+  const THEME_STORAGE_KEY = "portfolio-theme";
+  const DARK_QUERY = "(prefers-color-scheme: dark)";
+
+  const ICONS = {
+    arrowUpRight: `<svg class="ic" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M7 7h10v10"></path></svg>`,
+    chevronRight: `<svg class="ic channel-chevron" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>`,
+    linkedin: `<svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>`,
+    github: `<svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.4 5.4 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>`,
+    mail: `<svg class="ic" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>`
+  };
+
+  function escapeHtml(value) {
+    return String(value == null ? "" : value)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
+
+  function setText(id, value) {
+    const el = document.getElementById(id);
+    if (el && value != null) el.textContent = value;
+  }
+
+  // ==========================================================================
+  // TEMA AUTOMÁTICO (OS) + ALTERNADOR MANUAL
+  // ==========================================================================
+
+  function getEffectiveTheme() {
+    const explicit = document.documentElement.dataset.theme;
+    if (explicit === "light" || explicit === "dark") return explicit;
+    return window.matchMedia && window.matchMedia(DARK_QUERY).matches ? "dark" : "light";
+  }
+
+  function syncThemeUI() {
+    const effective = getEffectiveTheme();
+    const isDark = effective === "dark";
+
+    const meta = document.getElementById("meta-theme-color");
+    if (meta) meta.setAttribute("content", isDark ? "#000000" : "#f5f5f7");
+
+    const toggle = document.getElementById("theme-toggle");
+    if (toggle) {
+      toggle.setAttribute("aria-pressed", String(isDark));
+      const nextLabel = isDark ? "Mudar para tema claro" : "Mudar para tema escuro";
+      toggle.setAttribute("aria-label", nextLabel);
+      toggle.setAttribute("title", nextLabel);
+    }
+  }
+
+  function initThemeController() {
+    syncThemeUI();
+
+    const toggle = document.getElementById("theme-toggle");
+    if (toggle) {
+      toggle.addEventListener("click", () => {
+        const next = getEffectiveTheme() === "dark" ? "light" : "dark";
+        document.documentElement.dataset.theme = next;
+        try {
+          localStorage.setItem(THEME_STORAGE_KEY, next);
+        } catch (e) {}
+        syncThemeUI();
+      });
+    }
+
+    if (window.matchMedia) {
+      const mql = window.matchMedia(DARK_QUERY);
+      const onSystemChange = () => {
+        if (!document.documentElement.dataset.theme) {
+          syncThemeUI();
+        }
+      };
+      if (mql.addEventListener) mql.addEventListener("change", onSystemChange);
+      else if (mql.addListener) mql.addListener(onSystemChange);
+    }
+  }
+
+  window.resetTemaSistema = function () {
+    delete document.documentElement.dataset.theme;
+    try {
+      localStorage.removeItem(THEME_STORAGE_KEY);
+    } catch (e) {}
+    syncThemeUI();
+  };
+
+  // ==========================================================================
+  // NAVBAR SCROLL-EDGE & MENU MÓVEL
+  // ==========================================================================
+
+  function initNavigation() {
+    const navbar = document.getElementById("navbar");
+    if (navbar) {
+      const updateScrollEdge = () => {
+        navbar.classList.toggle("scrolled", window.scrollY > 8);
+      };
+      updateScrollEdge();
+      window.addEventListener("scroll", updateScrollEdge, { passive: true });
+    }
+
+    const menuBtn = document.getElementById("menu-toggle");
+    const mobileNav = document.getElementById("mobile-nav");
+    if (!menuBtn || !mobileNav) return;
+
+    const setMenuOpen = (open) => {
+      mobileNav.classList.toggle("open", open);
+      menuBtn.setAttribute("aria-expanded", String(open));
+      mobileNav.setAttribute("aria-hidden", String(!open));
+    };
+
+    menuBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = mobileNav.classList.contains("open");
+      setMenuOpen(!isOpen);
+    });
+
+    mobileNav.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => setMenuOpen(false));
+    });
+
+    document.addEventListener("click", (e) => {
+      if (
+        mobileNav.classList.contains("open") &&
+        !mobileNav.contains(e.target) &&
+        !menuBtn.contains(e.target)
+      ) {
+        setMenuOpen(false);
+      }
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && mobileNav.classList.contains("open")) {
+        setMenuOpen(false);
+        menuBtn.focus();
+      }
+    });
+  }
+
+  // ==========================================================================
+  // RENDERIZAÇÃO DO CONTEÚDO
+  // ==========================================================================
+
+  let activeCategory = "Todos";
+
+  function renderProjectsGrid(lista, category) {
+    const grid = document.getElementById("projetos-grid");
+    if (!grid || !Array.isArray(lista)) return;
+
+    const filtered =
+      category === "Todos" ? lista : lista.filter((item) => item.categoria === category);
+
+    grid.innerHTML = filtered
+      .map((item) => {
+        const mediaHtml = item.imagem
+          ? `
+            <div class="project-media">
+              <img src="${escapeHtml(item.imagem)}" alt="${escapeHtml(item.titulo)}" class="project-img" loading="lazy" />
+            </div>
+          `
+          : "";
+
+        const highlightHtml = item.destaque
+          ? `<p class="project-highlight">${escapeHtml(item.destaque)}</p>`
+          : "";
+
+        const tagsHtml = Array.isArray(item.tags)
+          ? `<div class="tag-row">${item.tags.map((t) => `<span class="tag">${escapeHtml(t)}</span>`).join("")}</div>`
+          : "";
+
+        return `
+          <article class="project-card">
+            ${mediaHtml}
+            <div class="project-body">
+              <div class="project-meta">
+                <span>${escapeHtml(item.categoria)}</span>
+              </div>
+              <h3 class="project-title">${escapeHtml(item.titulo)}</h3>
+              ${highlightHtml}
+              <p class="project-desc">${escapeHtml(item.descricao)}</p>
+              ${tagsHtml}
+              <div class="project-footer">
+                <a href="${escapeHtml(item.link)}" target="_blank" rel="noopener noreferrer" class="project-link">
+                  <span>Ver no GitHub</span>
+                  ${ICONS.arrowUpRight}
+                </a>
+              </div>
+            </div>
+          </article>
+        `;
+      })
+      .join("");
+  }
 
   function renderPortfolio() {
-    if (typeof PORTFOLIO_DADOS === 'undefined') {
-      console.error('PORTFOLIO_DADOS não foi encontrado. Verifique se dados.js foi carregado antes.');
+    if (typeof PORTFOLIO_DADOS === "undefined") {
+      console.error("PORTFOLIO_DADOS não encontrado. Verifique se dados.js foi carregado.");
       return;
     }
 
     const d = PORTFOLIO_DADOS;
 
-    // 1. RENDER HERO / PERFIL
+    // 1. HERO
     if (d.perfil) {
       const p = d.perfil;
-      const elBadge = document.getElementById('hero-badge-texto');
-      if (elBadge && p.cargoBadge) elBadge.textContent = p.cargoBadge;
+      setText("hero-eyebrow", p.eyebrow);
+      setText("hero-titulo", p.titulo);
+      setText("hero-subtitulo", p.subtitulo);
 
-      const elTitle = document.getElementById('hero-titulo');
-      if (elTitle && p.tituloHero) elTitle.innerHTML = p.tituloHero;
-
-      const elSubtitle = document.getElementById('hero-subtitulo');
-      if (elSubtitle && p.subtitulo) elSubtitle.textContent = p.subtitulo;
-
-      const elDesc = document.getElementById('hero-descricao');
-      if (elDesc && p.descricao) elDesc.textContent = p.descricao;
-
-      const elFoto = document.getElementById('hero-foto');
+      const elFoto = document.getElementById("hero-foto");
       if (elFoto && p.fotoPerfil) {
         elFoto.src = p.fotoPerfil;
-        elFoto.alt = `Foto de ${p.nome || 'Guilherme Miguel'}`;
+        elFoto.alt = `Foto de ${p.nome || "Guilherme Miguel"}`;
       }
 
-      const elBtnProjetos = document.getElementById('hero-btn-projetos');
-      if (elBtnProjetos && p.botoes) {
-        elBtnProjetos.textContent = p.botoes.projetosTexto || 'Ver Projetos';
-        elBtnProjetos.href = p.botoes.projetosLink || '#projetos';
+      if (p.botoes) {
+        const btnProj = document.getElementById("hero-btn-projetos");
+        if (btnProj) {
+          btnProj.textContent = p.botoes.projetosTexto || "Ver projetos";
+          btnProj.href = p.botoes.projetosLink || "#projetos";
+        }
+        const btnCont = document.getElementById("hero-btn-contato");
+        if (btnCont) {
+          btnCont.textContent = p.botoes.contatoTexto || "Entrar em contato";
+          btnCont.href = p.botoes.contatoLink || "#contato";
+        }
       }
 
-      const elBtnContato = document.getElementById('hero-btn-contato');
-      if (elBtnContato && p.botoes) {
-        elBtnContato.textContent = p.botoes.contatoTexto || 'Entre em Contato';
-        elBtnContato.href = p.botoes.contatoLink || '#contato';
+      const elMetricas = document.getElementById("hero-metricas");
+      if (elMetricas && Array.isArray(p.metricas)) {
+        elMetricas.innerHTML = p.metricas
+          .map(
+            (m) => `
+              <div class="metric-item">
+                <span class="metric-num">${escapeHtml(m.numero)}</span>
+                <span class="metric-desc">${escapeHtml(m.descricao)}</span>
+              </div>
+            `
+          )
+          .join("");
       }
     }
 
-    // 2. RENDER SOBRE MIM & MÉTRICAS
+    // 2. SOBRE
     if (d.sobre) {
-      const s = d.sobre;
-      const elTag = document.getElementById('sobre-tag');
-      if (elTag && s.tag) elTag.textContent = s.tag;
-
-      const elTitulo = document.getElementById('sobre-titulo');
-      if (elTitulo && s.titulo) elTitulo.textContent = s.titulo;
-
-      const elSub = document.getElementById('sobre-subtitulo');
-      if (elSub && s.subtitulo) elSub.textContent = s.subtitulo;
-
-      const elTextos = document.getElementById('sobre-textos');
-      if (elTextos && s.paragrafos) {
-        elTextos.innerHTML = s.paragrafos.map(p => `<p>${p}</p>`).join('');
-      }
-
-      const elMetricas = document.getElementById('sobre-metricas');
-      if (elMetricas && s.metricas) {
-        elMetricas.innerHTML = s.metricas.map(m => `
-          <div class="stat-box">
-            <span class="stat-num">${m.numero}</span>
-            <span class="stat-label">${m.descricao}</span>
-          </div>
-        `).join('');
+      setText("sobre-eyebrow", d.sobre.eyebrow);
+      setText("sobre-titulo", d.sobre.titulo);
+      const elTextos = document.getElementById("sobre-textos");
+      if (elTextos && Array.isArray(d.sobre.paragrafos)) {
+        elTextos.innerHTML = d.sobre.paragrafos.map((p) => `<p>${escapeHtml(p)}</p>`).join("");
       }
     }
 
-    // 3. RENDER COMPETÊNCIAS & FERRAMENTAS
-    if (d.competencias) {
-      const c = d.competencias;
-      const elTag = document.getElementById('competencias-tag');
-      if (elTag && c.tag) elTag.textContent = c.tag;
-
-      const elTitulo = document.getElementById('competencias-titulo');
-      if (elTitulo && c.titulo) elTitulo.textContent = c.titulo;
-
-      const elGrid = document.getElementById('competencias-grid');
-      if (elGrid && c.lista) {
-        const iconesSVG = {
-          database: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>`,
-          etl: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14h6v8H4zm10-7h6v15h-6zM4 2h6v8H4z"></path></svg>`,
-          ml: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M12 8v4l3 3"></path></svg>`,
-          deploy: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>`
-        };
-
-        elGrid.innerHTML = c.lista.map(item => `
-          <div class="skill-card">
-            <div class="skill-icon">
-              ${iconesSVG[item.icone] || iconesSVG.database}
-            </div>
-            <h3>${item.titulo}</h3>
-            <p>${item.descricao}</p>
-            <div class="skill-badges">
-              ${item.tags.map(t => `<span>${t}</span>`).join('')}
-            </div>
-          </div>
-        `).join('');
-      }
-    }
-
-    // 4. RENDER ARQUITETURA & RESILIÊNCIA
-    if (d.arquitetura) {
-      const a = d.arquitetura;
-      const elTag = document.getElementById('arquitetura-tag');
-      if (elTag && a.tag) elTag.textContent = a.tag;
-
-      const elTitulo = document.getElementById('arquitetura-titulo');
-      if (elTitulo && a.titulo) elTitulo.textContent = a.titulo;
-
-      const elSub = document.getElementById('arquitetura-subtitulo');
-      if (elSub && a.subtitulo) elSub.textContent = a.subtitulo;
-
-      const elGrid = document.getElementById('arquitetura-grid');
-      if (elGrid && a.cards) {
-        const iconesPerguntas = [
-          `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>`,
-          `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="9" x2="15" y2="15"></line><line x1="15" y1="9" x2="9" y2="15"></line></svg>`,
-          `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>`,
-          `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>`,
-          `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>`,
-          `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>`,
-          `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>`,
-          `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>`
-        ];
-
-        elGrid.innerHTML = a.cards.map((card, idx) => `
-          <div class="arch-card">
-            <span class="arch-question">[ ${card.tag} ]</span>
-            <h3>
-              ${iconesPerguntas[idx % iconesPerguntas.length]}
-              ${card.pergunta}
-            </h3>
-            <p>${card.resposta}</p>
-          </div>
-        `).join('');
-      }
-    }
-
-    // 5. RENDER PROJETOS
+    // 3. PROJETOS PÚBLICOS & CORPORATIVOS
     if (d.projetos) {
       const proj = d.projetos;
-      const elTag = document.getElementById('projetos-tag');
-      if (elTag && proj.tag) elTag.textContent = proj.tag;
+      setText("projetos-eyebrow", proj.eyebrow);
+      setText("projetos-titulo", proj.titulo);
+      setText("projetos-subtitulo", proj.subtitulo);
 
-      const elTitulo = document.getElementById('projetos-titulo');
-      if (elTitulo && proj.titulo) elTitulo.textContent = proj.titulo;
+      const filterEl = document.getElementById("projetos-filtro");
+      const categorias = Array.isArray(proj.categorias) ? proj.categorias : ["Todos"];
 
-      const elSub = document.getElementById('projetos-subtitulo');
-      if (elSub && proj.subtitulo) elSub.textContent = proj.subtitulo;
+      if (filterEl) {
+        if (!categorias.includes(activeCategory)) activeCategory = categorias[0] || "Todos";
 
-      const elGrid = document.getElementById('projetos-grid');
-      if (elGrid && proj.lista) {
-        elGrid.innerHTML = proj.lista.map(item => {
-          // Bloco da Imagem
-          let imgHtml = '';
-          if (item.imagem) {
-            imgHtml = `
-              <div class="project-img-wrapper">
-                <img src="${item.imagem}" alt="${item.titulo}" class="project-img" />
-                ${item.badgeOverlay ? `<div class="project-img-overlay"><span>${item.badgeOverlay}</span></div>` : ''}
-              </div>
+        filterEl.innerHTML = categorias
+          .map((cat) => {
+            const isActive = cat === activeCategory;
+            return `
+              <button
+                type="button"
+                class="seg-btn${isActive ? " active" : ""}"
+                role="tab"
+                aria-selected="${isActive}"
+                data-category="${escapeHtml(cat)}"
+              >${escapeHtml(cat)}</button>
             `;
-          } else if (item.badgeOverlay) {
-            imgHtml = `
-              <div class="project-img-wrapper">
-                <div class="project-img-overlay"><span>${item.badgeOverlay}</span></div>
-              </div>
-            `;
-          }
+          })
+          .join("");
 
-          // Bloco do Botão / Link
-          let footerBtnHtml = '';
-          if (item.tipo === 'privado') {
-            footerBtnHtml = `
-              <div class="private-badge">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
-                <span>${item.textoPrivado || 'Ambiente Corporativo Privado'}</span>
-              </div>
-            `;
-          } else {
-            footerBtnHtml = `
-              <a href="${item.link || '#'}" target="_blank" class="project-link">
-                <span>Ver no GitHub</span>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
-              </a>
-            `;
-          }
-
-          return `
-            <article class="project-card">
-              ${imgHtml}
-              <div class="project-body">
-                <span class="project-category">[ ${item.categoria} ]</span>
-                <h3 class="project-title">${item.titulo}</h3>
-                <p class="project-desc">${item.descricao}</p>
-                <div class="project-tags">
-                  ${item.tags.map(t => `<span>${t}</span>`).join('')}
-                </div>
-                <div class="project-footer">
-                  ${footerBtnHtml}
-                </div>
-              </div>
-            </article>
-          `;
-        }).join('');
-      }
-    }
-
-    // 6. RENDER SIMULADOR ML (TEXTOS)
-    if (d.simulador) {
-      const sim = d.simulador;
-      const elTag = document.getElementById('simulador-tag');
-      if (elTag && sim.tag) elTag.textContent = sim.tag;
-
-      const elTitulo = document.getElementById('simulador-titulo');
-      if (elTitulo && sim.titulo) elTitulo.textContent = sim.titulo;
-
-      const elSub = document.getElementById('simulador-subtitulo');
-      if (elSub && sim.subtitulo) elSub.textContent = sim.subtitulo;
-    }
-
-    // 7. RENDER CONTATO & REDES
-    if (d.contato) {
-      const ct = d.contato;
-      const elTag = document.getElementById('contato-tag');
-      if (elTag && ct.tag) elTag.textContent = ct.tag;
-
-      const elTitulo = document.getElementById('contato-titulo');
-      if (elTitulo && ct.titulo) elTitulo.textContent = ct.titulo;
-
-      const elSub = document.getElementById('contato-subtitulo');
-      if (elSub && ct.subtitulo) elSub.textContent = ct.subtitulo;
-
-      const elFormTitulo = document.getElementById('contato-form-titulo');
-      if (elFormTitulo && ct.whatsapp && ct.whatsapp.tituloFormulario) {
-        elFormTitulo.textContent = ct.whatsapp.tituloFormulario;
-      }
-
-      const elBtnText = document.getElementById('contato-btn-texto');
-      if (elBtnText && ct.whatsapp && ct.whatsapp.textoBotao) {
-        elBtnText.textContent = ct.whatsapp.textoBotao;
-      }
-
-      const elRedes = document.getElementById('contato-redes-box');
-      if (elRedes && ct.redes) {
-        const iconesSocial = {
-          linkedin: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>`,
-          github: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>`
+        filterEl.onclick = (e) => {
+          const btn = e.target.closest(".seg-btn");
+          if (!btn) return;
+          activeCategory = btn.dataset.category || "Todos";
+          filterEl.querySelectorAll(".seg-btn").forEach((b) => {
+            const on = b === btn;
+            b.classList.toggle("active", on);
+            b.setAttribute("aria-selected", String(on));
+          });
+          renderProjectsGrid(proj.publicos, activeCategory);
         };
+      }
 
-        elRedes.innerHTML = `
-          <h3>Redes Profissionais</h3>
-          ${ct.redes.map(r => `
-            <a href="${r.link}" target="_blank" class="social-card">
-              <div class="social-icon">
-                ${iconesSocial[r.tipo] || iconesSocial.github}
-              </div>
-              <div class="social-info">
-                <h4>${r.titulo}</h4>
-                <p>${r.subtitulo}</p>
-              </div>
-            </a>
-          `).join('')}
+      renderProjectsGrid(proj.publicos, activeCategory);
+
+      // Bloco minimalista para projetos corporativos/privados (sem links)
+      const corpEl = document.getElementById("projetos-corporativos");
+      if (corpEl && proj.corporativos && Array.isArray(proj.corporativos.lista)) {
+        const corp = proj.corporativos;
+        corpEl.innerHTML = `
+          <div class="corporate-head">
+            <h3>${escapeHtml(corp.titulo || "Projetos corporativos")}</h3>
+            <p>${escapeHtml(corp.nota || "")}</p>
+          </div>
+          <div class="corporate-grid">
+            ${corp.lista
+              .map(
+                (item) => `
+                  <article class="corporate-card">
+                    <span class="corporate-context">${escapeHtml(item.contexto)}</span>
+                    <h4 class="corporate-title">${escapeHtml(item.titulo)}</h4>
+                    <p class="corporate-desc">${escapeHtml(item.descricao)}</p>
+                  </article>
+                `
+              )
+              .join("")}
+          </div>
         `;
       }
     }
 
-    // 8. RENDER RODAPÉ
-    if (d.rodape) {
-      const rd = d.rodape;
-      const elCopy = document.getElementById('footer-copyright');
-      if (elCopy && rd.copyright) elCopy.textContent = rd.copyright;
+    // 4. ARQUITETURA (painel unificado)
+    if (d.arquitetura) {
+      const a = d.arquitetura;
+      setText("arquitetura-eyebrow", a.eyebrow);
+      setText("arquitetura-titulo", a.titulo);
+      setText("arquitetura-subtitulo", a.subtitulo);
 
-      const elNota = document.getElementById('footer-nota');
-      if (elNota && rd.nota) elNota.textContent = rd.nota;
+      const archEl = document.getElementById("arquitetura-lista");
+      if (archEl && Array.isArray(a.cards)) {
+        archEl.innerHTML = a.cards
+          .map(
+            (card) => `
+              <div class="arch-row">
+                <span class="arch-index">${escapeHtml(card.tag)}</span>
+                <div class="arch-content">
+                  <span class="arch-kicker">${escapeHtml(card.subtitulo)}</span>
+                  <h3 class="arch-question">${escapeHtml(card.pergunta)}</h3>
+                  <p class="arch-answer">${card.resposta}</p>
+                </div>
+              </div>
+            `
+          )
+          .join("");
+      }
+    }
+
+    // 5. COMPETÊNCIAS (painel 2x2 unificado)
+    if (d.competencias) {
+      const c = d.competencias;
+      setText("competencias-eyebrow", c.eyebrow);
+      setText("competencias-titulo", c.titulo);
+
+      const skillsEl = document.getElementById("competencias-grid");
+      if (skillsEl && Array.isArray(c.lista)) {
+        skillsEl.innerHTML = c.lista
+          .map(
+            (item) => `
+              <div class="skill-cell">
+                <h3 class="skill-title">${escapeHtml(item.titulo)}</h3>
+                <p class="skill-desc">${escapeHtml(item.descricao)}</p>
+                <div class="tag-row">
+                  ${item.tags.map((t) => `<span class="tag">${escapeHtml(t)}</span>`).join("")}
+                </div>
+              </div>
+            `
+          )
+          .join("");
+      }
+    }
+
+    // 6. CONTATO (LinkedIn, GitHub e E-mail)
+    if (d.contato) {
+      const ct = d.contato;
+      setText("contato-eyebrow", ct.eyebrow);
+      setText("contato-titulo", ct.titulo);
+      setText("contato-subtitulo", ct.subtitulo);
+
+      const canaisEl = document.getElementById("contato-canais");
+      if (canaisEl) {
+        const rows = [];
+
+        if (Array.isArray(ct.redes)) {
+          ct.redes.forEach((r) => {
+            rows.push(`
+              <a href="${escapeHtml(r.link)}" target="_blank" rel="noopener noreferrer" class="channel-row">
+                <div class="channel-main">
+                  <span class="channel-icon">${ICONS[r.tipo] || ICONS.github}</span>
+                  <div class="channel-text">
+                    <div class="channel-title">${escapeHtml(r.titulo)}</div>
+                    <div class="channel-sub">${escapeHtml(r.subtitulo)}</div>
+                  </div>
+                </div>
+                ${ICONS.chevronRight}
+              </a>
+            `);
+          });
+        }
+
+        if (ct.email) {
+          rows.push(`
+            <div class="channel-row">
+              <a href="mailto:${escapeHtml(ct.email)}" class="channel-link-area">
+                <span class="channel-icon">${ICONS.mail}</span>
+                <div class="channel-text">
+                  <div class="channel-title">E-mail</div>
+                  <div class="channel-sub">${escapeHtml(ct.email)}</div>
+                </div>
+              </a>
+              <div class="channel-actions">
+                <button type="button" class="copy-btn" id="copy-email-btn" data-email="${escapeHtml(ct.email)}">
+                  Copiar
+                </button>
+                ${ICONS.chevronRight}
+              </div>
+            </div>
+          `);
+        }
+
+        canaisEl.innerHTML = rows.join("");
+
+        const copyBtn = document.getElementById("copy-email-btn");
+        if (copyBtn) {
+          copyBtn.addEventListener("click", () => {
+            const addr = copyBtn.dataset.email || "";
+            const done = () => {
+              copyBtn.textContent = "Copiado";
+              setTimeout(() => {
+                copyBtn.textContent = "Copiar";
+              }, 2000);
+            };
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+              navigator.clipboard.writeText(addr).then(done).catch(() => {});
+            } else {
+              const tmp = document.createElement("textarea");
+              tmp.value = addr;
+              tmp.style.position = "fixed";
+              tmp.style.opacity = "0";
+              document.body.appendChild(tmp);
+              tmp.select();
+              try {
+                document.execCommand("copy");
+                done();
+              } catch (e) {}
+              document.body.removeChild(tmp);
+            }
+          });
+        }
+      }
+    }
+
+    // 7. RODAPÉ
+    if (d.rodape) {
+      setText("footer-copyright", d.rodape.copyright);
+      setText("footer-nota", d.rodape.nota);
     }
   }
 
-  // Executa o render assim que o DOM estiver pronto
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', renderPortfolio);
-  } else {
+  function init() {
+    initThemeController();
+    initNavigation();
     renderPortfolio();
   }
 
-  // Disponibiliza globalmente caso queira forçar re-render
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+
   window.atualizarPortfolio = renderPortfolio;
 })();
